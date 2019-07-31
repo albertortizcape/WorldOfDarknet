@@ -7,14 +7,14 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 - Backend: Api Rest con [.Net Core 2](https://www.microsoft.com/net/download)
 
 ## BBDD
-**Aún por decidir**
+- Amazon Relational Database Service (RDS) (Free 1 año)
 
 ### Herramientas de desarrollo
 - [Git](https://git-scm.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Herramientas de BBDD
-**Aún por decidir**
+- Sql Server Express?
 
 ## Arquitectura
 Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](https://codely.tv/blog/screencasts/arquitectura-hexagonal-ddd/)
