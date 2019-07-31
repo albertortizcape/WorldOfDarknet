@@ -11,7 +11,6 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 
 ### Herramientas de desarrollo
 - [Git](https://git-scm.com/)
-- [Visual Studio Community 2017](https://visualstudio.microsoft.com/es/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Herramientas de BBDD
@@ -21,6 +20,4 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](https://codely.tv/blog/screencasts/arquitectura-hexagonal-ddd/)
 
 ## Infraestructura
-**Aún por decidir**
-- [VSTS](https://visualstudio.microsoft.com/es/team-services/)
-- [Heroku](https://www.heroku.com/)
+- [Azure DevOps](https://visualstudio.microsoft.com/es/team-services/)
