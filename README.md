@@ -3,7 +3,7 @@ Proyecto web para gestionar las hojas de personajes de rol de la saga [World of 
 Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https://trello.com/b/iSr7C0xP/world-of-darknet)
 
 ## Tecnologías web
-- Frontal: [React native](http://www.reactnative.com/)
+- Frontal: [Vue js](https://vuejs.org/), [Vue Cli](https://cli.vuejs.org/) and [nuxt](https://nuxtjs.org/)
 - Backend: Api Rest con [.Net Core 2](https://www.microsoft.com/net/download)
 
 ## BBDD
