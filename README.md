@@ -5,6 +5,11 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 ## Tecnologías web
 - Frontal: [Vue js](https://vuejs.org/), [Vue Cli](https://cli.vuejs.org/) and [nuxt](https://nuxtjs.org/)
 - Backend: Api Rest con [.Net Core 2](https://www.microsoft.com/net/download)
+    ## Configuración typescript en nuxt
+    https://typescript.nuxtjs.org/guide/setup.html#installation
+    npm install --save-dev @nuxt/typescript-build
+    añadir a nuxt.config.js buildModules: ['@nuxt/typescript-build']
+    crear archivo tsconfig.json
 
 ## BBDD
 - Amazon Relational Database Service (RDS) (Free 1 año)
@@ -21,3 +26,6 @@ Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](h
 
 ## Infraestructura
 - [Azure DevOps](https://visualstudio.microsoft.com/es/team-services/)
+
+
+
