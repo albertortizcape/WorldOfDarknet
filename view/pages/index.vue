@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+      <Hello />>
       <logo />
       <h1 class="title">
         darknet-view
