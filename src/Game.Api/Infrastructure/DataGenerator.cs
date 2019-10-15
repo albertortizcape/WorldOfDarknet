@@ -31,7 +31,7 @@ namespace Game.Api.Infrastructure
                 );
 
                 context.SaveChanges();
-            };
+            }
         }
     }
 }
