@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Game.Api
 {
@@ -36,6 +37,7 @@ namespace Game.Api
             }
 
             app.AddSwaggerConfigure()
+                .UseSerilogRequestLogging()
                 .UseHttpsRedirection()
                 .UseRouting()
                 .UseAuthorization()
