@@ -21,3 +21,5 @@ Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](h
 
 ## Infraestructura
 - [Azure DevOps](https://visualstudio.microsoft.com/es/team-services/)
+
+[![Build Status](https://dev.azure.com/albertortizcape/WorldOfDarknet/_apis/build/status/WorldOfDarknet-CI?branchName=develop)](https://dev.azure.com/albertortizcape/WorldOfDarknet/_build/latest?definitionId=4&branchName=develop)
