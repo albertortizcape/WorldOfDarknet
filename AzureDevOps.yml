@@ -1,19 +1,37 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - develop
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+  solution: 'WorldOfDarkNet.sln'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+jobs:
+- job: API
+  displayName: Build API
+  pool:
+    vmImage: 'windows-latest'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Configure .net core version 3.0.x'
+    inputs:
+      version: '3.0.x'
+
+  - task: DotNetCoreCLI@2
+    displayName: dotnet build
+    inputs:
+      projects: '$(solution)'
+
+  - task: DotNetCoreCLI@2
+    displayName: dotnet publish
+    inputs:
+      command: publish
+      publishWebProjects: True
+      arguments: ' --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: True
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish API artifact'
+    inputs:
+      pathtoPublish: '$(build.artifactstagingdirectory)'
+      artifactName: 'API'
+      publishLocation: 'Container'
