@@ -2,11 +2,7 @@
 using Game.Api.Infrastructure.Authentication;
 using Game.Domain.Entities.UserAggregate;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Game.Api.Infrastructure.Services
@@ -14,12 +10,14 @@ namespace Game.Api.Infrastructure.Services
     public class AccountService : IAccountService
     {
         private readonly IUserService userService;
+        private readonly ITokenFactory tokenFactory;
         private readonly AuthenticationSettings settings;
 
-        public AccountService(IUserService userService, IOptions<AuthenticationSettings> authSettings)
+        public AccountService(IUserService userService, ITokenFactory tokenFactory, IOptions<AuthenticationSettings> authSettings)
         {
             settings = authSettings.Value;
             this.userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            this.tokenFactory = tokenFactory ?? throw new ArgumentNullException(nameof(tokenFactory));
         }
         
         public async Task<LoginViewModel> LoginAsync(string email, string password)
@@ -29,28 +27,15 @@ namespace Game.Api.Infrastructure.Services
             if (user == null)
                 return null;
 
+            DateTime tokenExpiration = DateTime.UtcNow.AddDays(settings.ExpireTokenDays);
+
             var loginViewModel = new LoginViewModel
             {
                 Id = user.Id,
                 Email = user.Email,
-                Expires = DateTime.UtcNow.AddDays(settings.ExpireTokenDays)
+                Expires = tokenExpiration,
+                Token = tokenFactory.Create(user, tokenExpiration)
             };
-
-            // authenticado, a por el token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(settings.Key);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email)
-                }),
-                Expires = loginViewModel.Expires,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            loginViewModel.Token = tokenHandler.WriteToken(token);
 
             return loginViewModel;
         }

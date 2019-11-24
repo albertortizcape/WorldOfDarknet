@@ -127,6 +127,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICypherProvider, CypherProvider>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddTransient<ITokenFactory, TokenFactory>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
