@@ -1,17 +1,27 @@
 ﻿using AutoMapper;
-using Game.Api.Infrastructure.Queries;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Game.Api.Application.Queries.Player;
+using Game.Api.Application.Validations;
+using Game.Api.Infrastructure.Authentication;
+using Game.Api.Infrastructure.Services;
+using Game.Domain.Entities.UserAggregate;
 using Game.Domain.Entities.PlayerAgrgegate;
-using Game.Infraestructura;
 using Game.Infraestructura.Repositories;
 using Game.Infraestructura.Services;
+using Game.Infrastructure.Providers;
+using Game.Infrastructure.Repositories;
+using Game.Infrastructure.Services;
 using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using System;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -22,9 +32,9 @@ namespace Microsoft.Extensions.DependencyInjection
             // Add framework services.
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
-                .AddControllersAsServices();  //Injecting Controllers themselves thru DI
-                                              //For further info see: http://docs.autofac.org/en/latest/integration/aspnetcore.html#controllers-as-services
-                                              //services.AddControllers();
+                .AddControllersAsServices()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterUserCommandValidator>());
+
             return services;
         }
 
@@ -105,6 +115,36 @@ namespace Microsoft.Extensions.DependencyInjection
                     };
                 };
             });
+        }
+
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
+        {
+            // configure strongly typed settings objects
+            var appSettingsSection = configuration.GetSection("Authentication");
+            services.Configure<AuthenticationSettings>(appSettingsSection);
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICypherProvider, CypherProvider>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Authentication:Key"])),
+                };
+            });
+
+            return services;
         }
     }
 }

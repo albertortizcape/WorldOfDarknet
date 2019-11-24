@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Game.Api.Infrastructure.Services;
+using Game.Domain.Entities.UserAggregate;
 
 namespace Game.Api.Infrastructure
 {
@@ -19,15 +21,22 @@ namespace Game.Api.Infrastructure
                 // Look for any board games.
                 if (context.Players.Any())
                 {
-                    return;   // Data was already seeded
+                    return;
                 }
 
+                var accountService = serviceProvider.GetService<IAccountService>();
+                accountService.RegisterAsync(
+                    new User
+                    {
+                        Email = "root@root.com"
+                    }, "root123");
+
                 context.Players.AddRange(
-                new Player { Name = "Alex" },
-                new Player { Name = "Alberto" },
-                new Player { Name = "Miguel" },
-                new Player { Name = "Luis" },
-                new Player { Name = "Hugo" }
+                new Player { FirstName = "Alex" },
+                new Player { FirstName = "Alberto" },
+                new Player { FirstName = "Miguel" },
+                new Player { FirstName = "Luis" },
+                new Player { FirstName = "Hugo" }
                 );
 
                 context.SaveChanges();

@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Game.Api.ViewModels;
+using Game.Api.Application.Commands.Player;
+using Game.Api.Application.Queries.Player;
 using Game.Domain.Entities.PlayerAgrgegate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Game.Api.Infrastructure.MapperProfiles
 {
@@ -15,7 +12,7 @@ namespace Game.Api.Infrastructure.MapperProfiles
             CreateMap<PlayerViewModel, Player>();
             CreateMap<Player, PlayerViewModel>();
 
-            CreateMap<CreatePlayerViewModel, Player>();
+            CreateMap<CreatePlayerCommand, Player>();
         }
     }
 }

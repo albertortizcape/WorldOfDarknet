@@ -1,16 +1,18 @@
-﻿using System;
+﻿using AutoMapper;
+using Game.Api.Application.Commands.Player;
+using Game.Api.Application.Queries.Player;
+using Game.Domain.Entities.PlayerAgrgegate;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using AutoMapper;
-using Game.Api.Infrastructure.Queries;
-using Game.Api.ViewModels;
-using Game.Domain.Entities.PlayerAgrgegate;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Game.Api.Controllers
 {
+    [Authorize]
     [Route("api/players")]
     [ApiController]
     public class PlayersController : ControllerBase
@@ -54,9 +56,9 @@ namespace Game.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(PlayerViewModel), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> CreatePlayerAsync([FromBody]CreatePlayerViewModel player)
+        public async Task<IActionResult> CreatePlayerAsync([FromBody]CreatePlayerCommand createPlayerCommand)
         {
-            Player playerToAdd = _mapper.Map<Player>(player);
+            Player playerToAdd = _mapper.Map<Player>(createPlayerCommand);
 
             try
             {

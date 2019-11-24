@@ -2,13 +2,14 @@
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Game.Api
 {
     public static class Configuration
     {
-        public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IWebHostEnvironment environment)
+        public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IWebHostEnvironment environment, IConfiguration configuration)
         {
             return services
                     .AddSwagger()
@@ -17,7 +18,8 @@ namespace Game.Api
                     .AddCustomProblemDetails(environment)
                     .AddRepositories()
                     .AddQueries()
-                    .AddApplicationServices();
+                    .AddApplicationServices()
+                    .AddCustomAuthentication(configuration);
         }
 
         public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app)
@@ -26,6 +28,7 @@ namespace Game.Api
                 .UseHttpsRedirection()
                 .UseProblemDetails()
                 .UseRouting()
+                .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {

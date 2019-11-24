@@ -9,11 +9,15 @@ namespace Game.Infraestructura.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Player> builder)
         {
 
-            builder.HasKey(b => b.Id);
+            builder.HasKey(o => o.Id);
             builder
-                .Property(b => b.Name)
+                .Property(o => o.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder
+                .HasOne(p => p.Identity)
+                .WithOne(i => i.Player);
         }
 
     }

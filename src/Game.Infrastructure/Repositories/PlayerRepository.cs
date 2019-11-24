@@ -3,6 +3,7 @@ using Game.Domain.Entities.PlayerAgrgegate;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Game.Infraestructura.Repositories
@@ -21,6 +22,11 @@ namespace Game.Infraestructura.Repositories
         public Player Add(Player player)
         {
             return context.Players.Add(player).Entity;
+        }
+
+        public IQueryable<Player> AsQueryable()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Player> FindByIdAsync(Guid playerId)

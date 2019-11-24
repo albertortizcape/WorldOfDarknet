@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Game.Api.ViewModels
+namespace Game.Api.Application.Queries.Player
 {
     public class PlayerViewModel
     {

@@ -5,7 +5,7 @@ namespace Game.Domain
 {
     public abstract class Entity
     {
-        Guid _Id;
+        Guid _Id = Guid.NewGuid();
         public virtual Guid Id
         {
             get

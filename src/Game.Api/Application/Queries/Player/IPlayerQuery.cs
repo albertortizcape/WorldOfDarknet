@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Game.Api.ViewModels;
 
-namespace Game.Api.Infrastructure.Queries
+namespace Game.Api.Application.Queries.Player
 {
     public interface IPlayerQuery
     {

@@ -1,5 +1,6 @@
-﻿using Game.Infraestructura.EntityTypeConfigurations;
-using Game.Domain;
+﻿using Game.Domain;
+using Game.Infraestructura.EntityTypeConfigurations;
+using Game.Infrastructure.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Threading;
@@ -11,12 +12,15 @@ namespace Game.Infraestructura
     {
         public GameContext(DbContextOptions<GameContext> options) : base(options) { }
 
-        public DbSet<Game.Domain.Entities.PlayerAgrgegate.Player> Players { get; set; }
+        public DbSet<Domain.Entities.PlayerAgrgegate.Player> Players { get; set; }
+        public DbSet<Domain.Entities.UserAggregate.User> Users { get; set; }
+
         public IDbContextTransaction CurrentTransaction { get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PlayerEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
