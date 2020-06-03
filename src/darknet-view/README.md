@@ -1,12 +1,12 @@
 # darknet-view
 
-> Client project for World of Darknet
+> My splendiferous Nuxt.js project
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
-$ npm run install
+$ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev

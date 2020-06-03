@@ -6,7 +6,7 @@
         darknet-view
       </h1>
       <h2 class="subtitle">
-        Client project for World of Darknet
+        My splendiferous Nuxt.js project
       </h2>
       <div class="links">
         <a
@@ -28,14 +28,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
 
-export default {
+export default Vue.extend({
   components: {
     Logo
   }
-}
+})
 </script>
 
 <style>
