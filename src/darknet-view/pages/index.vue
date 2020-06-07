@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <!-- <logo />
       <h1 class="title">
         darknet-view
       </h1>
@@ -23,7 +23,8 @@
         >
           GitHub
         </a>
-      </div>
+      </div> -->
+      <login />
     </div>
   </div>
 </template>
@@ -31,10 +32,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
+import Login from '~/components/LoginForm.vue'
 
 export default Vue.extend({
   components: {
-    Logo
+    Logo,
+    Login
   }
 })
 </script>
