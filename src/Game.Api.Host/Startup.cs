@@ -15,6 +15,7 @@ namespace Game.Api.Host
     {
         private readonly IConfiguration Configuration;
         private IWebHostEnvironment Environment { get; }
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
@@ -25,10 +26,24 @@ namespace Game.Api.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000/")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                                  });
+            });
+
+            services.AddControllers();
             services.AddApiConfiguration(Environment, Configuration)
                 .AddCustomDbContext(Configuration);
         }
 
+
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
@@ -36,6 +51,8 @@ namespace Game.Api.Host
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseApiConfiguration();
         }

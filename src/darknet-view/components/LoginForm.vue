@@ -52,14 +52,15 @@ export default {
   methods :{
     onSubmit(evt) {
       evt.preventDefault()
-      console.log('lalalla')
-      console.log(this.$store.getters[APP_GETTERS.IS_ADMIN])
       sample()
-      login(this.form.email, this.form.password)
-      // alert(JSON.stringify(this.form))
+      let email = this.form.email
+      let password = this.form.password
+      return login({ email, password }).then((result) => {
+        console.log('oleeee')
+        console.log(result)
+      })
     },
     onReset(evt) {
-      console.log('lalalla')
       evt.preventDefault()
       // Reset our form values
       this.form.email = ''
