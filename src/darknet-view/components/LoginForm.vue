@@ -14,23 +14,18 @@
           placeholder="Enter email"
         ></b-form-input>
       </b-form-group>
-
       <b-form-group id="input-group-2" label="Password:" label-for="input-2" @submit.stop.prevent>
           <b-input type="password" id="text-password" v-model="form.password" aria-describedby="password-help-block"></b-input>
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-    email: {{ form.email }}
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    
   </div>
 </template>
 
 <script>
 
-import { login, sample } from '@/service'
+import { login, sampleRequest } from '@/service'
 import { APP_GETTERS } from '@/store'
 
 export default {
@@ -52,12 +47,14 @@ export default {
   methods :{
     onSubmit(evt) {
       evt.preventDefault()
-      sample()
       let email = this.form.email
       let password = this.form.password
       return login({ email, password }).then((result) => {
-        console.log('oleeee')
         console.log(result)
+        console.log('hemos logeado, probamos una petición con token')
+        sampleRequest().then((resultRequest) => {
+          console.log(resultRequest)
+        })
       })
     },
     onReset(evt) {

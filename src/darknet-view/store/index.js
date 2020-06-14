@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 export const APP_GETTERS = {
   IS_LOGGED: 'isLogged',
-  IS_ADMIN: 'isAdmin',
+  IS_DIRECTOR: 'isDirector',
   TOKEN: 'token'
 }
 
@@ -17,14 +17,15 @@ export const APP_ACTIONS = {
 
 export const state = () => ({
   user: {
-    is_admin: true,
-    token: undefined
+    is_director: false,
+    token: undefined,
+    player: undefined
   }
 })
 
 export const getters = {
-  [APP_GETTERS.IS_ADMIN]: (state) => {
-    return state.user.is_admin
+  [APP_GETTERS.IS_DIRECTOR]: (state) => {
+    return state.user.is_director
   },
   [APP_GETTERS.IS_LOGGED]: (state) => {
     return state.user.token !== undefined

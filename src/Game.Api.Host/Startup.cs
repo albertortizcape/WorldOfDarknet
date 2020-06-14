@@ -15,7 +15,7 @@ namespace Game.Api.Host
     {
         private readonly IConfiguration Configuration;
         private IWebHostEnvironment Environment { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string MyAllowSpecificOrigins = "CorsPolicy";
 
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
@@ -31,9 +31,10 @@ namespace Game.Api.Host
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:3000/")
+                                      builder.SetIsOriginAllowed(s => true)
+                                        .AllowAnyMethod()
                                         .AllowAnyHeader()
-                                        .AllowAnyMethod();
+                                        .AllowCredentials();
                                   });
             });
 
