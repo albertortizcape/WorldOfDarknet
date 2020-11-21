@@ -1,22 +1,35 @@
 <template>
   <div class="container">
-    <div>
-      <login />
+    <div class="d-flex flex-wrap col-12">
+      <character v-for="(stats, index) in statsArray" :key="index" :stats="stats"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'vue-property-decorator'
 import Logo from '~/components/Logo.vue'
-import Login from '~/components/LoginForm.vue'
+import Character from '~/components/character.vue'
+import characterService from "~/service/characterService"
 
-export default Vue.extend({
+@Component({
   components: {
     Logo,
-    Login
+    Character
   }
 })
+
+export default class Action extends Vue {
+  private statsArray: string[] = []
+
+  public mounted() {
+    characterService.getPack().then(response => {
+      console.log(response)
+      this.statsArray = response
+    });
+
+  }
+}
 </script>
 
 <style>
