@@ -1,34 +1,55 @@
 <template>
   <div class="container">
     <div class="d-flex flex-wrap col-12">
-      <character v-for="(stats, index) in statsArray" :key="index" :stats="stats"/>
+      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" :key="index" :stats="stats"/>
+    </div>
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+<script>
+import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
 import Character from '~/components/character.vue'
+import diceTable from '~/components/diceTable.vue'
 import characterService from "~/service/characterService"
 
-@Component({
+
+export default {
   components: {
     Logo,
-    Character
-  }
-})
-
-export default class Action extends Vue {
-  private statsArray: string[] = []
-
-  public mounted() {
+    Character,
+    diceTable
+  },
+  data () {
+    return {
+      statsArray: [],
+      numberOfDices: 0,
+      spec: false,
+      tableKey: 0
+    }
+  },
+  mounted() {
+    let _self = this
     characterService.getPack().then(response => {
       console.log(response)
-      this.statsArray = response
+      _self.statsArray = response
     });
-
+  },
+  methods :{
+    
+    launchDices(diceSet) {
+      console.log('launch-dices')
+      console.log(diceSet)
+      this.tableKey++
+      this.numberOfDices = diceSet.times
+      this.spec = diceSet.speciality
+    }
   }
+
+
 }
 </script>
 
@@ -37,6 +58,7 @@ export default class Action extends Vue {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
