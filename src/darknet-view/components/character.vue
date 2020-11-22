@@ -8,7 +8,10 @@
           <p class="title">{{stats.name}}</p>
 
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'hominid')">hominid</div>
+          <div class="btn btn-primary mb-1" @click="changeForm(stats.name,'glabro')">glabro</div>
           <div class="btn btn-danger mb-1" @click="changeForm(stats.name, 'crinos')">crinos</div>
+          <div class="btn btn-warning mb-1" @click="changeForm(stats.name,'hispo')">hispo</div>
+          <div class="btn btn-info mb-1" @click="changeForm(stats.name,'lupus')">lupus</div>
 
           <div v-for="(att, index) in stats.stats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
             <p class="m-0 attribute">{{att.name}}:</p>
