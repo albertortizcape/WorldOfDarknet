@@ -1,13 +1,4 @@
 <template>
-    <!-- <div class="col-2 m-2 card char-card">
-      {{stats.name}}
-      <div >
-        <label class="mr-2">STR:</label>
-        <label>{{stats.str}}</label>
-        <div class="btn btn-launch" @click="launchDices(stats.str, true)"></div>
-      </div>
-    </div> -->
-
     <li class="flex-item ">
       <div class="recuadro">
         <div class="recuadro-icono">
@@ -15,6 +6,10 @@
         </div>
         <div class="recuadro-info">
           <p class="title">{{stats.name}}</p>
+
+          <div class="btn btn-info mb-1" @click="changeForm(stats.name,'hominid')">hominid</div>
+          <div class="btn btn-danger mb-1" @click="changeForm(stats.name, 'crinos')">crinos</div>
+
           <div v-for="(att, index) in stats.stats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
             <p class="m-0 attribute">{{att.name}}:</p>
             <p class="m-0">{{att.value}}</p>
@@ -40,8 +35,15 @@ export default {
   },
   data () {
     return {
-      
+      originalStr: 1,
+      originalDes: 1,
+      originalRes: 1
     }
+  },
+  mounted() {
+    this.originalStr = this.stats.stats[0].value
+    this.originalDes = this.stats.stats[1].value
+    this.originalRes = this.stats.stats[2].value
   },
   computed: {
   },
@@ -49,6 +51,21 @@ export default {
     launchDices (diceTimes, speciality) {
       const times = parseInt(diceTimes)
       this.$emit('launchDices', {times, speciality})
+    },
+    changeForm (name, newForm) {
+      this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
+      switch (newForm) {
+        case 'hominid':
+          this.stats.stats[0].value = parseInt(this.originalStr)
+          this.stats.stats[1].value = parseInt(this.originalDes)
+          this.stats.stats[2].value = parseInt(this.originalRes)
+          break;
+        case 'crinos':
+          this.stats.stats[0].value = parseInt(this.originalStr) + 4
+          this.stats.stats[1].value = parseInt(this.originalDes) + 1
+          this.stats.stats[2].value = parseInt(this.originalRes) + 3
+          break
+      }
     }
   },
   watch: {
