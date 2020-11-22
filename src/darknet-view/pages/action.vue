@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-wrap col-12">
+    <ul class="flex-container col-12">
       <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" :key="index" :stats="stats"/>
-    </div>
+    </ul>
     <div class="col-12 d-flex flex-wrap justify-content-center">
       <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" />
     </div>
@@ -41,8 +41,6 @@ export default {
   methods :{
     
     launchDices(diceSet) {
-      console.log('launch-dices')
-      console.log(diceSet)
       this.tableKey++
       this.numberOfDices = diceSet.times
       this.spec = diceSet.speciality
@@ -62,6 +60,16 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.flex-container{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .title {

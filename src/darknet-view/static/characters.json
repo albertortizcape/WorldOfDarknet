@@ -1,22 +1,91 @@
 [
   {
     "name": "Karen",
-    "str": "5"
+    "stats": [
+      {
+        "name":"FUE",
+        "value": "5"
+      },
+      {
+        "name":"DES",
+        "value": "5"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ],
+    "image": "./img/karen-hominid.png",
+    "crinos": {
+      "image": "./img/karen-crinos.png"
+    }
   },
   {
     "name": "Linda",
-    "str": "2"
+    "stats": [
+      {
+        "name":"FUE",
+        "value": "2"
+      },
+      {
+        "name":"DES",
+        "value": "3"
+      },
+      {
+        "name":"RES",
+        "value": "2"
+      }
+    ]
   },
   {
     "name": "Susurrante",
-    "str": "2"
+    "stats": [
+      {
+        "name":"FUE",
+        "value": "3"
+      },
+      {
+        "name":"DES",
+        "value": "3"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ]
   },
   {
     "name": "Muerde a las Pulgas",
-    "str": "5"
+    "stats": [
+      {
+        "name":"FUE",
+        "value": "5"
+      },
+      {
+        "name":"DES",
+        "value": "4"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ]
   },
   {
     "name": "Janet",
-    "str": "4"
+    "stats": [
+      {
+        "name":"FUE",
+        "value": "4"
+      },
+      {
+        "name":"DES",
+        "value": "4"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ]
   }
 ]
