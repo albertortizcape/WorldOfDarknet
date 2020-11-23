@@ -5,13 +5,25 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { APP_MUTATIONS } from '@/store'
 
 export default {
   name: 'dice',
-  computed: {
-    value() {
-      return Math.floor(Math.random() * 10) + 1 
+  data () {
+    return {
+      value: 0
     }
+  },
+  methods: {
+    roll() {
+      const val = Math.floor(Math.random() * 10) + 1
+      this.$store.commit(APP_MUTATIONS.DICEIN, val)
+      this.$emit('diceValue', val, this.$vnode.key)
+      this.value =  val
+    }
+  },
+  mounted() {
+    this.roll()
   }
   
 }

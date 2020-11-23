@@ -4,22 +4,21 @@
       <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" :key="index" :stats="stats"/>
     </ul>
     <div class="col-12 d-flex flex-wrap justify-content-center">
-      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" />
+      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
     </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
 import Character from '~/components/character.vue'
 import diceTable from '~/components/diceTable.vue'
 import characterService from "~/service/characterService"
-import gameHubService from "~/service/gameHubService"
+import {getNotifications} from "~/service/gameHubService"
+import { APP_GETTERS, APP_MUTATIONS } from '@/store'
 
 export default {
   components: {
-    Logo,
     Character,
     diceTable
   },
@@ -28,6 +27,8 @@ export default {
       statsArray: [],
       numberOfDices: 0,
       spec: false,
+      name: "",
+      defaultValues: [],
       tableKey: 0
     }
   },
@@ -41,14 +42,34 @@ export default {
 
   },
   created() {
-    gameHubService.start('alex')
+    getNotifications.$on('playerJoin', progress => {
+      console.log('got it!!!!')
+      
+    });
+    getNotifications.$on('DiceRolls', diceRoll => {
+      console.log('dices rolled aaaaaaahhhhhh!!!!')
+      console.log(diceRoll)
+      this.defaultValues = JSON.parse(diceRoll)
+      // getNotifications.$off('DiceRolls')
+    });
+    getNotifications.start('alex')
+    getNotifications.rollDices('[]')
   },
   methods :{
-    
     launchDices(diceSet) {
+      $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
+      this.defaultValues = []
+      this.indexDiceValue = 0;
       this.tableKey++
       this.numberOfDices = diceSet.times
       this.spec = diceSet.speciality
+      this.name = diceSet.name
+    },
+    setDiceValue(val) {
+      console.log(`val Action - ${val}`)
+      const dices = $nuxt.$store.getters[APP_GETTERS.DICETABLE]
+      getNotifications.rollDices(JSON.stringify(dices))
+      
     }
   }
 

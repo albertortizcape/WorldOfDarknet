@@ -53,7 +53,8 @@ export default {
   methods :{
     launchDices (diceTimes, speciality) {
       const times = parseInt(diceTimes)
-      this.$emit('launchDices', {times, speciality})
+      const name = this.stats.name
+      this.$emit('launchDices', {times, speciality, name})
     },
     changeForm (name, newForm) {
       this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
