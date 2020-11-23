@@ -1,4 +1,4 @@
-﻿using Game.Api.SignalR;
+﻿using Game.Api.Infrastructure.SignalR;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

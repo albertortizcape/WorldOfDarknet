@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Game.Api.SignalR
+namespace Game.Api.Infrastructure.SignalR
 {
     public interface IGameHub
     {

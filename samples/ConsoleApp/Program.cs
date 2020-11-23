@@ -64,6 +64,7 @@ namespace ConsoleApp
             Console.WriteLine("2. Send PlayerJoin");
             Console.WriteLine("3. Send PlayerStats");
             Console.WriteLine("4. Send DiceRolls");
+            Console.WriteLine("0. Exit");
             Console.WriteLine("Choose an option:");
 
             switch (Console.ReadLine())
