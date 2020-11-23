@@ -6,7 +6,6 @@
 <script lang="ts">
 import Vue from 'vue'
 
-@Component
 export default {
   name: 'dice',
   computed: {
