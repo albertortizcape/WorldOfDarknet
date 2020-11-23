@@ -15,7 +15,7 @@ import Logo from '~/components/Logo.vue'
 import Character from '~/components/character.vue'
 import diceTable from '~/components/diceTable.vue'
 import characterService from "~/service/characterService"
-
+import gameHubService from "~/service/gameHubService"
 
 export default {
   components: {
@@ -37,6 +37,11 @@ export default {
       console.log(response)
       _self.statsArray = response
     });
+
+
+  },
+  created() {
+    gameHubService.start('alex')
   },
   methods :{
     

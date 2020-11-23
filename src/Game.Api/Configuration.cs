@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Game.Api.SignalR;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +11,8 @@ namespace Game.Api
     {
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IWebHostEnvironment environment, IConfiguration configuration)
         {
+            services.AddSignalR();
+
             return services
                     .AddSwagger()
                     .AddCustomAutomapper()
@@ -33,6 +35,8 @@ namespace Game.Api
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
+
+                    endpoints.MapHub<GameHub>("/hub/game");
                 });
         }
     }
