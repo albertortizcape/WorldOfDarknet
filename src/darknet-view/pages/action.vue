@@ -47,13 +47,14 @@ export default {
       
     });
     getNotifications.$on('DiceRolls', diceRoll => {
-      console.log('dices rolled aaaaaaahhhhhh!!!!')
-      console.log(diceRoll)
-      this.defaultValues = JSON.parse(diceRoll)
+      console.log('recibida la tirada!!!!')
+      const receivedRoll = JSON.parse(diceRoll)
+      this.defaultValues = receivedRoll.values
+      this.name = receivedRoll.name
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.start('alex')
-    getNotifications.rollDices('[]')
+    getNotifications.rollDices('{"name": "alex", "values": []}')
   },
   methods :{
     launchDices(diceSet) {
@@ -65,10 +66,14 @@ export default {
       this.spec = diceSet.speciality
       this.name = diceSet.name
     },
-    setDiceValue(val) {
-      console.log(`val Action - ${val}`)
+    setDiceValue(name) {
+      console.log(`val Action - ${name}`)
       const dices = $nuxt.$store.getters[APP_GETTERS.DICETABLE]
-      getNotifications.rollDices(JSON.stringify(dices))
+      const emitedRoll = {
+        name: name,
+        values: dices
+      }
+      getNotifications.rollDices(JSON.stringify(emitedRoll))
       
     }
   }
