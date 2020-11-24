@@ -45,25 +45,29 @@ export default {
       this.$emit('launchDices', {times, speciality, name})
     },
     changeForm (name, newForm) {
-      this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
-      switch (newForm) {
-        case 'hominid':
-          this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value)
-          this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value)
-          this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value)
-          break;
-        case 'crinos':
-          this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value) + 4
-          this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value) + 1
-          this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value) + 3
-          break
+      // this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
+      // switch (newForm) {
+      //   case 'hominid':
+      //     this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value)
+      //     this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value)
+      //     this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value)
+      //     break;
+      //   case 'crinos':
+      //     this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value) + 4
+      //     this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value) + 1
+      //     this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value) + 3
+      //     break
+      // }
+      // const newStats = {
+      //   name: this.stats.name,
+      //   values: this.stats.actualStats
+      // }
+      // $nuxt.$store.commit(APP_MUTATIONS.ACTUALSTATS, newStats)
+      const newFormToSend = {
+        name: name,
+        value: newForm
       }
-      const newStats = {
-        name: this.stats.name,
-        values: this.stats.actualStats
-      }
-      $nuxt.$store.commit(APP_MUTATIONS.ACTUALSTATS, newStats)
-      this.$emit('transformacion', newStats)
+      this.$emit('transformacion', newFormToSend)
     }
   },
   watch: {

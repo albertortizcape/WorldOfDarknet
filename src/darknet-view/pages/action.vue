@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul class="flex-container col-12">
-      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="changeForm" :key="index" :stats="stats"/>
+      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
     </ul>
     <div class="col-12 d-flex flex-wrap justify-content-center">
       <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
@@ -55,19 +55,20 @@ export default {
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.$on('PlayerStats', playerStats => {
-      console.log('recibida las características!!!!')
-      const receivedStats = JSON.parse(playerStats)
-      console.log('transformación la que tengo en el pantalón !')
-      const charUpdated = _self.statsArray.forEach(character => {
-        if (character.name === receivedStats.name) {
-          character.actualStats = receivedStats.values
-        }
-      })
+      // console.log('recibida las características!!!!')
+      // const receivedStats = JSON.parse(playerStats)
+      // console.log('transformación la que tengo en el pantalón !')
+      // const charUpdated = _self.statsArray.forEach(character => {
+      //   if (character.name === receivedStats.name) {
+      //     character.actualStats = receivedStats.values
+      //   }
+      // })
+      this.changeForm(playerStats);
       
     });
     getNotifications.start('alex')
     getNotifications.rollDices('{"name": "alex", "values": []}')
-    getNotifications.changeForm('{"name": "alex", "values": []}')
+    getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
   },
   methods :{
     launchDices(diceSet) {
@@ -88,8 +89,47 @@ export default {
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
     },
-    changeForm(newStats) {
+    sendChangeForm(newStats) {
       getNotifications.changeForm(JSON.stringify(newStats))
+    }
+    ,
+    transformacion (newForm) {
+      getNotifications.changeForm(JSON.stringify(newForm))
+    },
+    changeForm (newForm) {
+      const newFormReceived = JSON.parse(newForm)
+      this.statsArray.forEach(character => {
+        if (character.name === newFormReceived.name) {
+          character.image = `./img/${newFormReceived.name.toLowerCase()}-${newFormReceived.value}.png`
+          switch (newFormReceived.value) {
+            case 'hominid':
+              character.actualStats[0].value = parseInt(character.stats[0].value)
+              character.actualStats[1].value = parseInt(character.stats[1].value)
+              character.actualStats[2].value = parseInt(character.stats[2].value)
+              break;
+            case 'glabro':
+              character.actualStats[0].value = parseInt(character.stats[0].value) + 2
+              character.actualStats[1].value = parseInt(character.stats[1].value)
+              character.actualStats[2].value = parseInt(character.stats[2].value) + 2
+              break;
+            case 'crinos':
+              character.actualStats[0].value = parseInt(character.stats[0].value) + 4
+              character.actualStats[1].value = parseInt(character.stats[1].value) + 1
+              character.actualStats[2].value = parseInt(character.stats[2].value) + 3
+              break
+            case 'hispo':
+              character.actualStats[0].value = parseInt(character.stats[0].value) + 3
+              character.actualStats[1].value = parseInt(character.stats[1].value) + 2
+              character.actualStats[2].value = parseInt(character.stats[2].value) + 3
+              break;
+            case 'lupus':
+              character.actualStats[0].value = parseInt(character.stats[0].value) + 1
+              character.actualStats[1].value = parseInt(character.stats[1].value) + 2
+              character.actualStats[2].value = parseInt(character.stats[2].value) + 2
+              break;
+          }
+        }
+      })
     }
   },
   watch: {
