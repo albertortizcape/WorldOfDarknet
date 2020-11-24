@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul class="flex-container col-12">
-      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" :key="index" :stats="stats"/>
+      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="changeForm" :key="index" :stats="stats"/>
     </ul>
     <div class="col-12 d-flex flex-wrap justify-content-center">
       <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
@@ -42,6 +42,7 @@ export default {
 
   },
   created() {
+    const _self = this;
     getNotifications.$on('playerJoin', progress => {
       console.log('got it!!!!')
       
@@ -53,8 +54,20 @@ export default {
       this.name = receivedRoll.name
       // getNotifications.$off('DiceRolls')
     });
+    getNotifications.$on('PlayerStats', playerStats => {
+      console.log('recibida las características!!!!')
+      const receivedStats = JSON.parse(playerStats)
+      console.log('transformación la que tengo en el pantalón !')
+      const charUpdated = _self.statsArray.forEach(character => {
+        if (character.name === receivedStats.name) {
+          character.actualStats = receivedStats.values
+        }
+      })
+      
+    });
     getNotifications.start('alex')
     getNotifications.rollDices('{"name": "alex", "values": []}')
+    getNotifications.changeForm('{"name": "alex", "values": []}')
   },
   methods :{
     launchDices(diceSet) {
@@ -74,7 +87,14 @@ export default {
         values: dices
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
-      
+    },
+    changeForm(newStats) {
+      getNotifications.changeForm(JSON.stringify(newStats))
+    }
+  },
+  watch: {
+    statsArray (newValue) {
+      console.log('new values stats Array!')
     }
   }
 

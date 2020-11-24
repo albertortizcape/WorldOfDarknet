@@ -15,6 +15,26 @@
         "value": "3"
       }
     ],
+    "actualStats": [
+      {
+        "name":"FUE",
+        "value": "5"
+      },
+      {
+        "name":"DES",
+        "value": "5"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ],
+    "habs": [
+      {
+        "name": "Pelea",
+        "value": "3"
+      }
+    ],
     "image": "./img/karen-hominid.png",
     "crinos": {
       "image": "./img/karen-crinos.png"
@@ -35,6 +55,26 @@
         "name":"RES",
         "value": "2"
       }
+    ],
+    "actualStats": [
+      {
+        "name":"FUE",
+        "value": "2"
+      },
+      {
+        "name":"DES",
+        "value": "3"
+      },
+      {
+        "name":"RES",
+        "value": "2"
+      }
+    ],
+    "habs": [
+      {
+        "name": "Pelea",
+        "value": "3"
+      }
     ]
   },
   {
@@ -50,6 +90,26 @@
       },
       {
         "name":"RES",
+        "value": "3"
+      }
+    ],
+    "actualStats": [
+      {
+        "name":"FUE",
+        "value": "3"
+      },
+      {
+        "name":"DES",
+        "value": "3"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ],
+    "habs": [
+      {
+        "name": "Pelea",
         "value": "3"
       }
     ]
@@ -69,6 +129,26 @@
         "name":"RES",
         "value": "3"
       }
+    ],
+    "actualStats": [
+      {
+        "name":"FUE",
+        "value": "5"
+      },
+      {
+        "name":"DES",
+        "value": "4"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ],
+    "habs": [
+      {
+        "name": "Pelea",
+        "value": "3"
+      }
     ]
   },
   {
@@ -84,6 +164,26 @@
       },
       {
         "name":"RES",
+        "value": "3"
+      }
+    ],
+    "actualStats": [
+      {
+        "name":"FUE",
+        "value": "4"
+      },
+      {
+        "name":"DES",
+        "value": "4"
+      },
+      {
+        "name":"RES",
+        "value": "3"
+      }
+    ],
+    "habs": [
+      {
+        "name": "Pelea",
         "value": "3"
       }
     ]

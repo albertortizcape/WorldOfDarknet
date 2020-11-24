@@ -4,14 +4,16 @@ export const APP_GETTERS = {
   IS_LOGGED: 'isLogged',
   IS_DIRECTOR: 'isDirector',
   TOKEN: 'token',
-  DICETABLE: 'diceTable'
+  DICETABLE: 'diceTable',
+  ACTUALSTATS: 'actualStats'
 }
 
 export const APP_MUTATIONS = {
   LOGIN: 'login',
   LOGOUT: 'logout',
   DICEIN: 'diceIn',
-  DICEEMPTY: 'diceEmpty'
+  DICEEMPTY: 'diceEmpty',
+  ACTUALSTATS: 'actualStats'
 }
 
 export const APP_ACTIONS = {
@@ -24,7 +26,8 @@ export const state = () => ({
     token: undefined,
     player: undefined
   },
-  diceTable: []
+  diceTable: [],
+  actualStats: []
 })
 
 export const getters = {
@@ -39,6 +42,9 @@ export const getters = {
   },
   [APP_GETTERS.DICETABLE]: (state) => {
     return state.diceTable
+  },
+  [APP_GETTERS.ACTUALSTATS]: (state) => {
+    return state.actualStats
   }
 }
 
@@ -54,5 +60,8 @@ export const mutations = {
   },
   [APP_MUTATIONS.DICEIN]: (state, val) => {
     state.diceTable.push(val)
+  },
+  [APP_MUTATIONS.ACTUALSTATS]: (state) => {
+    Vue.set(state, 'actualStats', [])
   }
 }

@@ -13,7 +13,7 @@
           <div class="btn btn-warning mb-1" @click="changeForm(stats.name,'hispo')">hispo</div>
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'lupus')">lupus</div>
 
-          <div v-for="(att, index) in stats.stats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
+          <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
             <p class="m-0 attribute">{{att.name}}:</p>
             <p class="m-0">{{att.value}}</p>
             <div class="btn btn-launch" @click="launchDices(att.value, true)"></div>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-
+import { APP_GETTERS, APP_MUTATIONS } from '@/store'
 export default {
   props: {
     stats: {
@@ -35,18 +35,6 @@ export default {
     }
   },
   components: {
-  },
-  data () {
-    return {
-      originalStr: 1,
-      originalDes: 1,
-      originalRes: 1
-    }
-  },
-  mounted() {
-    this.originalStr = this.stats.stats[0].value
-    this.originalDes = this.stats.stats[1].value
-    this.originalRes = this.stats.stats[2].value
   },
   computed: {
   },
@@ -60,16 +48,22 @@ export default {
       this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
       switch (newForm) {
         case 'hominid':
-          this.stats.stats[0].value = parseInt(this.originalStr)
-          this.stats.stats[1].value = parseInt(this.originalDes)
-          this.stats.stats[2].value = parseInt(this.originalRes)
+          this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value)
+          this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value)
+          this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value)
           break;
         case 'crinos':
-          this.stats.stats[0].value = parseInt(this.originalStr) + 4
-          this.stats.stats[1].value = parseInt(this.originalDes) + 1
-          this.stats.stats[2].value = parseInt(this.originalRes) + 3
+          this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value) + 4
+          this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value) + 1
+          this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value) + 3
           break
       }
+      const newStats = {
+        name: this.stats.name,
+        values: this.stats.actualStats
+      }
+      $nuxt.$store.commit(APP_MUTATIONS.ACTUALSTATS, newStats)
+      this.$emit('transformacion', newStats)
     }
   },
   watch: {
