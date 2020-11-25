@@ -32,6 +32,10 @@ export default {
       type: String,
       required: true
     },
+    dificulty: {
+      type: Number,
+      required: true
+    },
     defaultValues: {
       type: Array,
       required: false

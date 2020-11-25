@@ -4,7 +4,7 @@
       <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
     </ul>
     <div class="col-12 d-flex flex-wrap justify-content-center">
-      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
+      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :dificulty="dificulty" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@ export default {
       numberOfDices: 0,
       spec: false,
       name: "",
+      dificulty: 6,
       defaultValues: [],
       tableKey: 0
     }
@@ -72,15 +73,19 @@ export default {
   },
   methods :{
     launchDices(diceSet) {
+      console.log('diceSet en el tablero!!!!!')
+      console.log(diceSet)
       $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
       this.defaultValues = []
       this.indexDiceValue = 0;
       this.tableKey++
       this.numberOfDices = diceSet.times
       this.spec = diceSet.speciality
+      this.dificulty = diceSet.dificulty
       this.name = diceSet.name
     },
     setDiceValue(name) {
+      // TODO: pasar la dificultad y si hay especialidad
       console.log(`val Action - ${name}`)
       const dices = $nuxt.$store.getters[APP_GETTERS.DICETABLE]
       const emitedRoll = {

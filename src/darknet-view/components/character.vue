@@ -33,7 +33,6 @@
         </div>
         <div class="dados col-12 p-1">
             <div class="btn btn-launch" @click="launchDices()">Launch!</div>
-            <!-- <input id="total-dices" type="textbox" v-model="diceTimes"> -->
             <input type="text" class="total-dices" v-model="totalDices">
             <input type="text" class="dificulty" v-model="dificulty">
             <div>
@@ -105,10 +104,12 @@ export default {
       })
     },
     launchDices () {
+      console.log('lalalalllala')
       const times = parseInt(this.totalDices)//parseInt(this.attributeDices) + parseInt(this.AbilityDices)
       const spec = this.speciality
       const name = this.stats.name
-      this.$emit('launchDices', {times, spec, name})
+      const dificulty = this.dificulty
+      this.$emit('launchDices', {times, spec, name, dificulty})
       this.totalDices = 0
       this.attributeDices = 0
       this.abilityDices = 0
