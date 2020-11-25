@@ -13,12 +13,34 @@
           <div class="btn btn-warning mb-1" @click="changeForm(stats.name,'hispo')">hispo</div>
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'lupus')">lupus</div>
 
-          <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
-            <p class="m-0 attribute">{{att.name}}:</p>
-            <p class="m-0">{{att.value}}</p>
-            <div class="btn btn-launch" @click="launchDices(att.value, true)"></div>
+          <div class="stat-square" :class="stats.name">
+            <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
+              <div class="btn btn-stat" :id="`btn-${att.name}`" @click="selectAttribute(att.value, att.name)">
+                {{att.name}}
+                {{att.value}}
+              </div>
+            </div>
+          </div>
+
+          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
+            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
+              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
+                {{abi.name}}
+                {{abi.value}}
+              </div>
+            </div>
           </div>
         </div>
+        <div class="dados col-12 p-1">
+            <div class="btn btn-launch" @click="launchDices()">Launch!</div>
+            <!-- <input id="total-dices" type="textbox" v-model="diceTimes"> -->
+            <input type="text" class="total-dices" v-model="totalDices">
+            <input type="text" class="dificulty" v-model="dificulty">
+            <div>
+              <label for="spec">spec</label>
+              <input id="spec" type="checkbox" v-model="speciality">
+            </div>
+          </div>
       </div>
     </li>
 
@@ -33,36 +55,71 @@ export default {
       type: Object,
       required: true
     }
+  }, data () {
+    return {
+      attributeDices: 0,
+      abilityDices: 0,
+      speciality: false,
+      totalDices: 0,
+      dificulty: 6
+    }
   },
   components: {
   },
   computed: {
   },
   methods :{
-    launchDices (diceTimes, speciality) {
-      const times = parseInt(diceTimes)
+    selectAttribute (diceTimes, attName) {
+      this.totalDices = parseInt(this.totalDices) - parseInt(this.attributeDices)
+      document.querySelectorAll(`.${this.stats.name} .btn-stat`).forEach(item => { 
+        if(item.id === `btn-${attName}`) {
+          if(Array.from(item.classList).includes('btn-secondary')) {
+            item.classList.remove('btn-secondary')
+            this.attributeDices = 0
+          } else {
+            item.classList.add('btn-secondary')
+            this.attributeDices = diceTimes
+            this.totalDices = parseInt(this.totalDices) + parseInt(diceTimes)
+          }
+        } else {
+          item.classList.remove('btn-secondary')
+        }
+      })
+    },
+    selectAbility (diceTimes, attName) {
+      console.log('selectAbility')
+      this.totalDices = parseInt(this.totalDices) - parseInt(this.abilityDices)
+      document.querySelectorAll(`.ability-${this.stats.name} .btn-abi`).forEach(item => { 
+        if(item.id === `btn-${attName}`) {
+          if(Array.from(item.classList).includes('btn-secondary')) {
+            item.classList.remove('btn-secondary')
+            this.abilityDices = 0
+          } else {
+            item.classList.add('btn-secondary')
+            this.abilityDices = diceTimes
+            this.totalDices = parseInt(this.totalDices) + parseInt(diceTimes)
+          }
+        } else {
+          item.classList.remove('btn-secondary')
+        }
+      })
+    },
+    launchDices () {
+      const times = parseInt(this.totalDices)//parseInt(this.attributeDices) + parseInt(this.AbilityDices)
+      const spec = this.speciality
       const name = this.stats.name
-      this.$emit('launchDices', {times, speciality, name})
+      this.$emit('launchDices', {times, spec, name})
+      this.totalDices = 0
+      this.attributeDices = 0
+      this.abilityDices = 0
+      document.querySelectorAll(`.${this.stats.name} .btn-stat`).forEach(item => {
+        item.classList.remove('btn-secondary')
+      })
+      document.querySelectorAll(`.ability-${this.stats.name} .btn-abi`).forEach(item => {
+        item.classList.remove('btn-secondary')
+      })
     },
     changeForm (name, newForm) {
-      // this.stats.image = `./img/${name.toLowerCase()}-${newForm}.png`
-      // switch (newForm) {
-      //   case 'hominid':
-      //     this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value)
-      //     this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value)
-      //     this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value)
-      //     break;
-      //   case 'crinos':
-      //     this.stats.actualStats[0].value = parseInt(this.stats.stats[0].value) + 4
-      //     this.stats.actualStats[1].value = parseInt(this.stats.stats[1].value) + 1
-      //     this.stats.actualStats[2].value = parseInt(this.stats.stats[2].value) + 3
-      //     break
-      // }
-      // const newStats = {
-      //   name: this.stats.name,
-      //   values: this.stats.actualStats
-      // }
-      // $nuxt.$store.commit(APP_MUTATIONS.ACTUALSTATS, newStats)
       const newFormToSend = {
         name: name,
         value: newForm
@@ -76,15 +133,23 @@ export default {
 }
 </script>
 <style scoped>
+.stat-square {
+  display: flex;
+  justify-content: space-between;
+}
 .char-card {
   height: 12rem;
   display: flex;
   flex-direction: column;
 }
 .btn-launch {
-  height: 1rem;
-  width: 2rem;
   border: 1px solid salmon;
+}
+.btn-stat {
+  border: 1px solid rgb(112, 16, 16);
+}
+.btn-abi {
+  border: 1px solid rgb(122, 133, 196);
 }
 .flex-item {
   padding:5px;    
@@ -98,9 +163,9 @@ export default {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   display: block;
   margin-top: 80px;
-  min-height: 100px;
-  width: 200px;
-  padding: 10px 25px;
+  min-height: 300px;
+  width: 18rem;
+  padding: 10px 10px;
   text-align: center;
   z-index: 2;
   position: relative;
@@ -120,6 +185,19 @@ export default {
 .recuadro-icono img {
   height: 4rem;
   border-radius: 50%;
+}
+.dados {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.total-dices {
+  border-color: blue;
+  width: 3rem;
+}
+.dificulty {
+  border-color: red;
+  width: 2rem;
 }
 
 </style>
