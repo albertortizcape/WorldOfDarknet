@@ -2,7 +2,7 @@
   <div class="col-12 p-0">
     <p>{{name}}</p>
     <div class="col-12 my-2 dice-table">
-      <dice v-for="index in diceTimes" v-if="defaultValues.length === 0" :key="index" v-on:diceValue="setDiceValue" class="" />
+      <!-- <dice v-for="index in diceTimes" v-if="defaultValues.length === 0" :key="index" v-on:diceValue="setDiceValue" class="" /> -->
       <div v-for="(val, index) in defaultValues" class="single-dice" :key="index">
         {{val}}
       </div>
@@ -20,22 +20,22 @@ export default {
     dice
   },
   props: {
-    diceTimes: {
-      type: Number,
-      required: true
-    },
-    speciality: {
-      type: Boolean,
-      required: true
-    },
+    // diceTimes: {
+    //   type: Number,
+    //   required: true
+    // },
+    // speciality: {
+    //   type: Boolean,
+    //   required: true
+    // },
     name: {
       type: String,
       required: true
     },
-    dificulty: {
-      type: Number,
-      required: true
-    },
+    // dificulty: {
+    //   type: Number,
+    //   required: true
+    // },
     defaultValues: {
       type: Array,
       required: false

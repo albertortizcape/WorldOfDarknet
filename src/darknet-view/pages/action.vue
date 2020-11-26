@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+      <dice-table class="" :name="name" :defaultValues="defaultValues" />
+      <!-- <dice v-for="index in diceTimes" v-if="defaultValues.length === 0" :key="index" v-on:diceValue="setDiceValue" class="" /> -->
+    </div>
     <ul class="flex-container col-12">
       <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
     </ul>
-    <div class="col-12 d-flex flex-wrap justify-content-center">
-      <dice-table class="" :key="tableKey" :diceTimes="numberOfDices" :speciality="spec" :name="name" :dificulty="dificulty" :defaultValues="defaultValues" v-on:diceValue="setDiceValue" />
-    </div>
   </div>
 </template>
 
@@ -30,7 +31,8 @@ export default {
       name: "",
       dificulty: 6,
       defaultValues: [],
-      tableKey: 0
+      tableKey: 0,
+      diceResults: []
     }
   },
   mounted() {
@@ -53,6 +55,8 @@ export default {
       const receivedRoll = JSON.parse(diceRoll)
       this.defaultValues = receivedRoll.values
       this.name = receivedRoll.name
+      this.dificulty = receivedRoll.dificulty
+      this.spec = receivedRoll.spec
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.$on('PlayerStats', playerStats => {
@@ -72,17 +76,22 @@ export default {
     getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
   },
   methods :{
+    // TODO: lanzar los dados aquí --> pasar los valores a diceTable --> cada valor a un dado
     launchDices(diceSet) {
       console.log('diceSet en el tablero!!!!!')
       console.log(diceSet)
       $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
-      this.defaultValues = []
-      this.indexDiceValue = 0;
-      this.tableKey++
       this.numberOfDices = diceSet.times
-      this.spec = diceSet.speciality
-      this.dificulty = diceSet.dificulty
       this.name = diceSet.name
+      this.rollDices()
+
+      const emitedRoll = {
+        name: this.name,
+        values: this.defaultValues,
+        dificulty: diceSet.dificulty,
+        spec: diceSet.speciality
+      }
+      getNotifications.rollDices(JSON.stringify(emitedRoll))
     },
     setDiceValue(name) {
       // TODO: pasar la dificultad y si hay especialidad
@@ -93,6 +102,16 @@ export default {
         values: dices
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
+    }, 
+    rollDices () {
+      const results = []
+      for(var iDice = 1; iDice <= this.numberOfDices; iDice++) {
+        results.push(this.roll())
+      }
+      this.defaultValues = results
+    },
+    roll() {
+      return Math.floor(Math.random() * 10) + 1
     },
     sendChangeForm(newStats) {
       getNotifications.changeForm(JSON.stringify(newStats))
