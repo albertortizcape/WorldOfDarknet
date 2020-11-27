@@ -55,8 +55,124 @@
     ],
     "abilities": [
       {
-        "name": "Pelea",
+        "name": "alerta",
+        "value": "1"
+      },
+      {
+        "name": "arma fuego",
+        "value": "1"
+      },
+      {
+        "name": "academic.",
+        "value": "2"
+      },
+      {
+        "name": "atletismo",
         "value": "3"
+      },
+      {
+        "name": "artesanía",
+        "value": "1"
+      },
+      {
+        "name": "ciencia",
+        "value": "0"
+      },
+      {
+        "name": "callejeo",
+        "value": "0"
+      },
+      {
+        "name": "conducir",
+        "value": "3"
+      },
+      {
+        "name": "enigmas",
+        "value": "0"
+      },
+      {
+        "name": "empatía",
+        "value": "1"
+      },
+      {
+        "name": "etiqueta",
+        "value": "0"
+      },
+      {
+        "name": "informática",
+        "value": "1"
+      },
+      {
+        "name": "expresión",
+        "value": "0"
+      },
+      {
+        "name": "interpret.",
+        "value": "0"
+      },
+      {
+        "name": "investigación",
+        "value": "0"
+      },
+      {
+        "name": "imp Primario",
+        "value": "3"
+      },
+      {
+        "name": "latrocinio",
+        "value": "0"
+      },
+      {
+        "name": "leyes",
+        "value": "0"
+      },
+      {
+        "name": "intimidación",
+        "value": "1"
+      },
+      {
+        "name": "pelea armas",
+        "value": "1"
+      },
+      {
+        "name": "medicina",
+        "value": "1"
+      },
+      {
+        "name": "liderazgo",
+        "value": "1"
+      },
+      {
+        "name": "sigilo",
+        "value": "2"
+      },
+      {
+        "name": "ocultismo",
+        "value": "1"
+      },
+      {
+        "name": "pelea",
+        "value": "3"
+      },
+      {
+        "name": "superviv.",
+        "value": "1"
+      },
+      {
+        "name": "rituales",
+        "value": "1"
+      },
+      {
+        "name": "subterfugio",
+        "value": "0"
+      },
+      {
+        "name": "trato Anim.",
+        "value": "1"
+      },
+      {
+        "name": "tecnología",
+        "value": "0"
       }
     ],
     "image": "./img/karen-hominid.png"

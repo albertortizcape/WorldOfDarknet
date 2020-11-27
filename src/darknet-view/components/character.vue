@@ -13,7 +13,7 @@
           <div class="btn btn-warning mb-1" @click="changeForm(stats.name,'hispo')">hispo</div>
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'lupus')">lupus</div>
 
-          <div class="stat-square" :class="stats.name">
+          <div class="stat-square mt-3" :class="stats.name">
             <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
               <div class="btn btn-stat" :id="`btn-${att.name}`" @click="selectAttribute(att.value, att.name)">
                 {{att.name}}
@@ -22,16 +22,7 @@
             </div>
           </div>
 
-          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
-            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
-              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
-                {{abi.name}}
-                {{abi.value}}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dados col-12 p-1">
+          <div class="dados col-12 p-1 mt-3 mb-3">
             <div class="btn btn-launch" @click="launchDices()">Launch!</div>
             <input type="text" class="total-dices" v-model="totalDices">
             <input type="text" class="dificulty" v-model="dificulty">
@@ -40,6 +31,17 @@
               <input id="spec" type="checkbox" v-model="speciality">
             </div>
           </div>
+
+          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
+            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
+              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
+                {{abi.name}}
+                <b>{{abi.value}}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </li>
 
@@ -103,7 +105,7 @@ export default {
       })
     },
     launchDices () {
-      const times = parseInt(this.totalDices)//parseInt(this.attributeDices) + parseInt(this.AbilityDices)
+      const times = parseInt(this.totalDices)
       const spec = this.speciality
       const name = this.stats.name
       const dificulty = this.dificulty
@@ -132,7 +134,7 @@ export default {
 }
 </script>
 <style scoped>
-.stat-square {
+.stat-square, .ability-square {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -142,14 +144,32 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.btn {
+  line-height: 1;
+}
+
+.btn-info, .btn-primary, .btn-danger,
+.btn-warning, .btn-info {
+  background: transparent;
+  color: black;
+}
+
+
+
 .btn-launch {
   border: 1px solid salmon;
 }
 .btn-stat {
   border: 1px solid rgb(112, 16, 16);
+  width: 5rem;
 }
 .btn-abi {
   border: 1px solid rgb(122, 133, 196);
+  width: 6rem;
+  font-size: 10px;
+}
+.btn-abi b {
+  font-size: 12px;
 }
 .flex-item {
   padding:5px;    
@@ -164,7 +184,7 @@ export default {
   display: block;
   margin-top: 80px;
   min-height: 300px;
-  width: 18rem;
+  width: 20rem;
   padding: 10px 10px;
   text-align: center;
   z-index: 2;

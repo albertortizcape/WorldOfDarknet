@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <div class="col-12 d-flex flex-wrap justify-content-center">
-      <dice-table class="" :name="name" :defaultValues="defaultValues" />
-      <!-- <dice v-for="index in diceTimes" v-if="defaultValues.length === 0" :key="index" v-on:diceValue="setDiceValue" class="" /> -->
+    <div class="col-12 d-flex flex-wrap justify-content-center mt-5">
+      <dice-table class="" :name="name" :diceValues="diceValues" :dificulty="dificulty" :speciality="spec" />
     </div>
     <ul class="flex-container col-12">
       <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
@@ -30,7 +29,7 @@ export default {
       spec: false,
       name: "",
       dificulty: 6,
-      defaultValues: [],
+      diceValues: [],
       tableKey: 0,
       diceResults: []
     }
@@ -38,7 +37,6 @@ export default {
   mounted() {
     let _self = this
     characterService.getPack().then(response => {
-      console.log(response)
       _self.statsArray = response
     });
 
@@ -51,23 +49,21 @@ export default {
     });
     getNotifications.$on('DiceRolls', diceRoll => {
       const receivedRoll = JSON.parse(diceRoll)
-      this.defaultValues = receivedRoll.values
+      this.diceValues = receivedRoll.values
       this.name = receivedRoll.name
-      this.dificulty = receivedRoll.dificulty
-      this.spec = receivedRoll.spec
+      this.dificulty = parseInt(receivedRoll.dificulty)
+      this.spec = receivedRoll.spec ? true : false
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.$on('PlayerStats', playerStats => {
       this.changeForm(playerStats);
     });
     getNotifications.start('alex')
-    getNotifications.rollDices('{"name": "alex", "values": []}')
+    getNotifications.rollDices('{"name": "alex", "values": [], "dificulty": 7, "spec": true}')
     getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
   },
   methods :{
     launchDices(diceSet) {
-      console.log('diceSet en el tablero!!!!!')
-      console.log(diceSet)
       $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
       this.numberOfDices = diceSet.times
       this.name = diceSet.name
@@ -77,12 +73,11 @@ export default {
         name: this.name,
         values: rolls,
         dificulty: diceSet.dificulty,
-        spec: diceSet.speciality
+        spec: diceSet.spec
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
     },
     setDiceValue(name) {
-      console.log(`val Action - ${name}`)
       const dices = $nuxt.$store.getters[APP_GETTERS.DICETABLE]
       const emitedRoll = {
         name: name,
@@ -144,9 +139,6 @@ export default {
     }
   },
   watch: {
-    // statsArray (newValue) {
-    //   console.log('new values stats Array!')
-    // }
   }
 
 
@@ -162,6 +154,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  max-width: 90% !important;
 }
 
 .flex-container{
@@ -171,7 +164,7 @@ export default {
   display: flex;
   flex-flow: row wrap;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .title {
