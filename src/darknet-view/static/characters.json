@@ -27,6 +27,30 @@
       {
         "name":"RES",
         "value": "3"
+      },
+      {
+        "name":"CAR",
+        "value": "2"
+      },
+      {
+        "name":"MAN",
+        "value": "1"
+      },
+      {
+        "name":"APA",
+        "value": "4"
+      },
+      {
+        "name":"PER",
+        "value": "3"
+      },
+      {
+        "name":"INT",
+        "value": "2"
+      },
+      {
+        "name":"AST",
+        "value": "4"
       }
     ],
     "abilities": [

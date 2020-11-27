@@ -15,15 +15,15 @@ export default {
     }
   },
   methods: {
-    roll() {
-      const val = Math.floor(Math.random() * 10) + 1
-      this.$store.commit(APP_MUTATIONS.DICEIN, val)
-      this.$emit('diceValue', val, this.$vnode.key)
-      this.value =  val
-    }
+    // roll() {
+    //   const val = Math.floor(Math.random() * 10) + 1
+    //   this.$store.commit(APP_MUTATIONS.DICEIN, val)
+    //   this.$emit('diceValue', val, this.$vnode.key)
+    //   this.value =  val
+    // }
   },
   mounted() {
-    this.roll()
+    //this.roll()
   }
   
 }

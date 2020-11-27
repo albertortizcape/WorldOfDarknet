@@ -86,7 +86,6 @@ export default {
       })
     },
     selectAbility (diceTimes, attName) {
-      console.log('selectAbility')
       this.totalDices = parseInt(this.totalDices) - parseInt(this.abilityDices)
       document.querySelectorAll(`.ability-${this.stats.name} .btn-abi`).forEach(item => { 
         if(item.id === `btn-${attName}`) {
@@ -104,7 +103,6 @@ export default {
       })
     },
     launchDices () {
-      console.log('lalalalllala')
       const times = parseInt(this.totalDices)//parseInt(this.attributeDices) + parseInt(this.AbilityDices)
       const spec = this.speciality
       const name = this.stats.name
@@ -136,6 +134,7 @@ export default {
 <style scoped>
 .stat-square {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .char-card {

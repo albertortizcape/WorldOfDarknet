@@ -47,11 +47,9 @@ export default {
   created() {
     const _self = this;
     getNotifications.$on('playerJoin', progress => {
-      console.log('got it!!!!')
       
     });
     getNotifications.$on('DiceRolls', diceRoll => {
-      console.log('recibida la tirada!!!!')
       const receivedRoll = JSON.parse(diceRoll)
       this.defaultValues = receivedRoll.values
       this.name = receivedRoll.name
@@ -60,41 +58,30 @@ export default {
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.$on('PlayerStats', playerStats => {
-      // console.log('recibida las características!!!!')
-      // const receivedStats = JSON.parse(playerStats)
-      // console.log('transformación la que tengo en el pantalón !')
-      // const charUpdated = _self.statsArray.forEach(character => {
-      //   if (character.name === receivedStats.name) {
-      //     character.actualStats = receivedStats.values
-      //   }
-      // })
       this.changeForm(playerStats);
-      
     });
     getNotifications.start('alex')
     getNotifications.rollDices('{"name": "alex", "values": []}')
     getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
   },
   methods :{
-    // TODO: lanzar los dados aquí --> pasar los valores a diceTable --> cada valor a un dado
     launchDices(diceSet) {
       console.log('diceSet en el tablero!!!!!')
       console.log(diceSet)
       $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
       this.numberOfDices = diceSet.times
       this.name = diceSet.name
-      this.rollDices()
+      const rolls = this.rollDices()
 
       const emitedRoll = {
         name: this.name,
-        values: this.defaultValues,
+        values: rolls,
         dificulty: diceSet.dificulty,
         spec: diceSet.speciality
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
     },
     setDiceValue(name) {
-      // TODO: pasar la dificultad y si hay especialidad
       console.log(`val Action - ${name}`)
       const dices = $nuxt.$store.getters[APP_GETTERS.DICETABLE]
       const emitedRoll = {
@@ -108,7 +95,7 @@ export default {
       for(var iDice = 1; iDice <= this.numberOfDices; iDice++) {
         results.push(this.roll())
       }
-      this.defaultValues = results
+      return results
     },
     roll() {
       return Math.floor(Math.random() * 10) + 1
@@ -157,9 +144,9 @@ export default {
     }
   },
   watch: {
-    statsArray (newValue) {
-      console.log('new values stats Array!')
-    }
+    // statsArray (newValue) {
+    //   console.log('new values stats Array!')
+    // }
   }
 
 
