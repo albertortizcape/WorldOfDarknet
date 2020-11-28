@@ -15,7 +15,7 @@ export const login = async ({ email, password }) => {
   const response = await httpClient({
     method: 'post',
     url: '/users/login',
-    baseURL: 'http://localhost:50205/api',
+    baseURL: 'http://localhost:5000/api',
     headers: {
       'accept': 'application/json',
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export const sampleRequest = async () => {
   const response = await httpClient({
     method: 'get',
     url: '/players',
-    baseURL: 'http://localhost:50205/api',
+    baseURL: 'http://localhost:5000/api',
     headers: requestHeader()
   })
   return response.data
