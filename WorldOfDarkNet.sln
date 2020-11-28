@@ -5,21 +5,21 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1184B012-7575-4C67-9DE8-E2226D9E155A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Domain", "src\Game.Domain\Game.Domain.csproj", "{7A853C35-A2DF-4973-AAB0-249D89B99518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Domain", "game-api\src\Game.Domain\Game.Domain.csproj", "{7A853C35-A2DF-4973-AAB0-249D89B99518}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Infrastructure", "src\Game.Infrastructure\Game.Infrastructure.csproj", "{5813270B-2D5E-4054-B000-857BC2F90B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Infrastructure", "game-api\src\Game.Infrastructure\Game.Infrastructure.csproj", "{5813270B-2D5E-4054-B000-857BC2F90B9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Api", "src\Game.Api\Game.Api.csproj", "{4571C34B-D414-45EA-A6D9-915049FA7452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Api", "game-api\src\Game.Api\Game.Api.csproj", "{4571C34B-D414-45EA-A6D9-915049FA7452}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Api.Host", "src\Game.Api.Host\Game.Api.Host.csproj", "{D743E611-9D7C-44EF-B80E-9A22137EA25E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.Api.Host", "game-api\src\Game.Api.Host\Game.Api.Host.csproj", "{D743E611-9D7C-44EF-B80E-9A22137EA25E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{47A1D5B7-8B4E-4915-A10D-6E8F63395169}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.FunctionalTests", "test\Game.FunctionalTests\Game.FunctionalTests.csproj", "{EF3E0585-D500-41D1-8078-5C219A495806}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game.FunctionalTests", "game-api\test\Game.FunctionalTests\Game.FunctionalTests.csproj", "{EF3E0585-D500-41D1-8078-5C219A495806}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B3EE77C3-0751-4414-BB36-A98D1F523832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "samples\ConsoleApp\ConsoleApp.csproj", "{3D92DA54-0A18-4B90-A6AB-8E5532B8A425}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "game-api\samples\ConsoleApp\ConsoleApp.csproj", "{3D92DA54-0A18-4B90-A6AB-8E5532B8A425}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
