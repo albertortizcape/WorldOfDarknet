@@ -52,8 +52,6 @@ export default {
     characterService.getPack().then(response => {
       _self.statsArray = response
     });
-
-
   },
   created() {
     const _self = this;
@@ -80,9 +78,18 @@ export default {
     getNotifications.$on('PlayerStats', playerStats => {
       this.changeForm(playerStats);
     });
-    getNotifications.start('alex')
-    getNotifications.rollDices('{"name": "alex", "values": [], "dificulty": 5, "spec": true, "pj": true}')
-    getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
+    const name = $nuxt.$store.getters[APP_GETTERS.PLAYER]
+    if(name) {
+      getNotifications.start(name['name'])
+      getNotifications.rollDices(`{"name": "${name['name']}", "values": [], "dificulty": 5, "spec": true, "pj": true}`)
+      getNotifications.changeForm(`{"name": "${name['name']}", "value": "zooooorrooooo"}`)
+    } else {
+      getNotifications.start('alexxx')
+      getNotifications.rollDices('{"name": "alex", "values": [], "dificulty": 5, "spec": true, "pj": true}')
+      getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
+    }
+    
+    
   },
   methods :{
     launchDices(diceSet) {

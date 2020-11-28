@@ -2,18 +2,17 @@
   <div class="container">
     <div>
       <login />
+      <router-link to="/action">Go to Action</router-link>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
 import Login from '~/components/LoginForm.vue'
 
 export default Vue.extend({
   components: {
-    Logo,
     Login
   }
 })

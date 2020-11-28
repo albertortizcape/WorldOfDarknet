@@ -3,6 +3,7 @@ import Vue from 'vue'
 export const APP_GETTERS = {
   IS_LOGGED: 'isLogged',
   IS_DIRECTOR: 'isDirector',
+  PLAYER: 'player',
   TOKEN: 'token',
   DICETABLE: 'diceTable',
   ACTUALSTATS: 'actualStats'
@@ -39,6 +40,9 @@ export const getters = {
   },
   [APP_GETTERS.TOKEN]: (state) => {
     return state.user.token
+  },
+  [APP_GETTERS.PLAYER]: (state) => {
+    return state.user.player
   },
   [APP_GETTERS.DICETABLE]: (state) => {
     return state.diceTable

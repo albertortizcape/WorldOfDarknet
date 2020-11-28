@@ -54,6 +54,7 @@ export default {
         console.log('hemos logeado, probamos una petición con token')
         sampleRequest().then((resultRequest) => {
           console.log(resultRequest)
+          console.log($nuxt.$store.getters[APP_GETTERS.PLAYER])
         })
       })
     },
