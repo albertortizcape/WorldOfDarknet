@@ -1,10 +1,19 @@
 <template>
   <div class="container">
+    <ul class="flex-container col-12 mt-5">
+      <character v-for="(stats, index) in statsArray.pjs" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
+    </ul>
+
     <div class="col-12 d-flex flex-wrap justify-content-center mt-5">
       <dice-table class="" :name="name" :diceValues="diceValues" :dificulty="dificulty" :speciality="spec" />
     </div>
+
+    <p class="pnjs mt-4">PNJS<p>
+    <div class="col-12 d-flex flex-wrap justify-content-center mt-1">
+      <dice-table class="" :name="pnjName" :diceValues="pnjDiceValues" :dificulty="pnjDificulty" :speciality="pnjSpec" />
+    </div>
     <ul class="flex-container col-12">
-      <character v-for="(stats, index) in statsArray" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
+      <character v-for="(stats, index) in statsArray.pnjs" v-on:launchDices="launchPnjDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
     </ul>
   </div>
 </template>
@@ -30,6 +39,10 @@ export default {
       name: "",
       dificulty: 6,
       diceValues: [],
+      pnjDiceValues: [],
+      pnjSpec: false,
+      pnjName: "",
+      pnjDificulty: 6,
       tableKey: 0,
       diceResults: []
     }
@@ -49,17 +62,26 @@ export default {
     });
     getNotifications.$on('DiceRolls', diceRoll => {
       const receivedRoll = JSON.parse(diceRoll)
-      this.diceValues = receivedRoll.values
-      this.name = receivedRoll.name
-      this.dificulty = parseInt(receivedRoll.dificulty)
-      this.spec = receivedRoll.spec ? true : false
+      if(receivedRoll.pj) {
+        this.diceValues = receivedRoll.values
+        this.name = receivedRoll.name
+        this.dificulty = parseInt(receivedRoll.dificulty)
+        this.spec = receivedRoll.spec ? true : false
+      }
+      else {
+        this.pnjDiceValues = receivedRoll.values
+        this.pnjName = receivedRoll.name
+        this.pnjDificulty = parseInt(receivedRoll.dificulty)
+        this.pnjSpec = receivedRoll.spec ? true : false
+      }
+      
       // getNotifications.$off('DiceRolls')
     });
     getNotifications.$on('PlayerStats', playerStats => {
       this.changeForm(playerStats);
     });
     getNotifications.start('alex')
-    getNotifications.rollDices('{"name": "alex", "values": [], "dificulty": 7, "spec": true}')
+    getNotifications.rollDices('{"name": "alex", "values": [], "dificulty": 5, "spec": true, "pj": true}')
     getNotifications.changeForm('{"name": "alex", "value": "zooooorrooooo"}')
   },
   methods :{
@@ -73,7 +95,23 @@ export default {
         name: this.name,
         values: rolls,
         dificulty: diceSet.dificulty,
-        spec: diceSet.spec
+        spec: diceSet.spec,
+        pj: true
+      }
+      getNotifications.rollDices(JSON.stringify(emitedRoll))
+    },
+    launchPnjDices(diceSet) {
+      $nuxt.$store.commit(APP_MUTATIONS.DICEEMPTY)
+      this.numberOfDices = diceSet.times
+      // this.pnjName = diceSet.name
+      const rolls = this.rollDices()
+
+      const emitedRoll = {
+        name: diceSet.name,
+        values: rolls,
+        dificulty: diceSet.dificulty,
+        spec: diceSet.spec,
+        pj: false
       }
       getNotifications.rollDices(JSON.stringify(emitedRoll))
     },
@@ -104,7 +142,7 @@ export default {
     },
     changeForm (newForm) {
       const newFormReceived = JSON.parse(newForm)
-      this.statsArray.forEach(character => {
+      this.statsArray.pjs.forEach(character => {
         if (character.name === newFormReceived.name) {
           character.image = `./img/${newFormReceived.name.toLowerCase()}-${newFormReceived.value}.png`
           switch (newFormReceived.value) {

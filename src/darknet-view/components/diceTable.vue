@@ -4,7 +4,12 @@
       <p class="name">{{name}}</p>
       <p>Dificultad: {{dificulty}}</p>
       <p>Especialidad: {{speciality ? 'Sí' : 'No'}}</p>
-      <p><b>Éxitos: {{exitos}}</b></p>
+      <div class="row m-0">
+        <b class="ml-3">Éxitos: {{exitos}}</b>
+        <b class="ml-3">Unos: {{unos}}</b>
+        <b class="ml-3">Dieces: {{dieces}}</b>
+        <b class="ml-3">Total: {{total}}</b>
+      </div>
     </div>
     <div class="col-12 my-2 dice-table">
       <!-- <dice v-for="index in diceTimes" v-if="diceValues.length === 0" :key="index" v-on:diceValue="setDiceValue" class="" /> -->
@@ -25,10 +30,6 @@ export default {
     dice
   },
   props: {
-    // diceTimes: {
-    //   type: Number,
-    //   required: true
-    // },
     speciality: {
       type: Boolean,
       required: true
@@ -48,7 +49,10 @@ export default {
   },
   data () {
     return {
-      exitos: 0
+      exitos: 0,
+      total: 0,
+      unos: 0,
+      dieces: 0
     }
   },
   computed: {
@@ -58,7 +62,6 @@ export default {
   },
   methods :{
     initComponent () {
-      console.log('-----------------init table dice!!!!!!!!')
     },
     setDiceValue(val, index) {
       if(index === this.diceTimes) {
@@ -78,14 +81,13 @@ export default {
           exitosParcial++
         }
       })
-
-      console.log('exitos: ' + exitosParcial)
-      console.log('unos: ' + unos)
-      console.log('dieces: ' + dieces)
+      this.exitos = exitosParcial
+      this.dieces = dieces
+      this.unos = unos
       if (dieces > unos) {
-        this.exitos = exitosParcial + (dieces - unos) * 2
+        this.total = exitosParcial + (dieces - unos) * 2
       } else {
-        this.exitos = exitosParcial - (unos - dieces)
+        this.total = exitosParcial - (unos - dieces)
       }
 
     }

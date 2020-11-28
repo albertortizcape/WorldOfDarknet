@@ -22,6 +22,15 @@
             </div>
           </div>
 
+          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
+            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
+              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
+                {{abi.name}}
+                <b>{{abi.value}}</b>
+              </div>
+            </div>
+          </div>
+
           <div class="dados col-12 p-1 mt-3 mb-3">
             <div class="btn btn-launch" @click="launchDices()">Launch!</div>
             <input type="text" class="total-dices" v-model="totalDices">
@@ -32,14 +41,6 @@
             </div>
           </div>
 
-          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
-            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
-              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
-                {{abi.name}}
-                <b>{{abi.value}}</b>
-              </div>
-            </div>
-          </div>
         </div>
         
       </div>
@@ -138,6 +139,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  
+}
+.ability-square {
+  box-shadow: 1px 2px 4px 5px rgba(120, 90, 120, 0.4);
 }
 .char-card {
   height: 12rem;
