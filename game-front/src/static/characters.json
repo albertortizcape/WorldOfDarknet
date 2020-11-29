@@ -76,7 +76,7 @@
           "value": "0"
         },
         {
-          "name": "ciencia",
+          "name": "ciencias",
           "value": "0"
         },
         {
@@ -183,7 +183,7 @@
       "stats": [
         {
           "name":"FUE",
-          "value": "2"
+          "value": "3"
         },
         {
           "name":"DES",
@@ -197,7 +197,7 @@
       "actualStats": [
         {
           "name":"FUE",
-          "value": "2"
+          "value": "3"
         },
         {
           "name":"DES",
@@ -206,12 +206,152 @@
         {
           "name":"RES",
           "value": "2"
+        },
+        {
+          "name":"CAR",
+          "value": "3"
+        },
+        {
+          "name":"MAN",
+          "value": "2"
+        },
+        {
+          "name":"APA",
+          "value": "3"
+        },
+        {
+          "name":"PER",
+          "value": "4"
+        },
+        {
+          "name":"INT",
+          "value": "3"
+        },
+        {
+          "name":"AST",
+          "value": "4"
         }
       ],
       "abilities": [
         {
-          "name": "Pelea",
+          "name": "alerta",
+          "value": "1"
+        },
+        {
+          "name": "arma fuego",
+          "value": "0"
+        },
+        {
+          "name": "academic.",
+          "value": "0"
+        },
+        {
+          "name": "atletismo",
+          "value": "2"
+        },
+        {
+          "name": "artesanía",
+          "value": "1"
+        },
+        {
+          "name": "ciencias",
+          "value": "2"
+        },
+        {
+          "name": "callejeo",
+          "value": "0"
+        },
+        {
+          "name": "conducir",
+          "value": "1"
+        },
+        {
+          "name": "enigmas",
+          "value": "1"
+        },
+        {
+          "name": "empatía",
           "value": "3"
+        },
+        {
+          "name": "etiqueta",
+          "value": "2"
+        },
+        {
+          "name": "informática",
+          "value": "0"
+        },
+        {
+          "name": "expresión",
+          "value": "3"
+        },
+        {
+          "name": "interpret.",
+          "value": "1"
+        },
+        {
+          "name": "investigación",
+          "value": "3"
+        },
+        {
+          "name": "imp Primario",
+          "value": "1"
+        },
+        {
+          "name": "latrocinio",
+          "value": "0"
+        },
+        {
+          "name": "leyes",
+          "value": "3"
+        },
+        {
+          "name": "intimidación",
+          "value": "0"
+        },
+        {
+          "name": "pelea armas",
+          "value": "0"
+        },
+        {
+          "name": "medicina",
+          "value": "2"
+        },
+        {
+          "name": "liderazgo",
+          "value": "0"
+        },
+        {
+          "name": "sigilo",
+          "value": "0"
+        },
+        {
+          "name": "ocultismo",
+          "value": "0"
+        },
+        {
+          "name": "pelea",
+          "value": "3"
+        },
+        {
+          "name": "superviv.",
+          "value": "0"
+        },
+        {
+          "name": "rituales",
+          "value": "3"
+        },
+        {
+          "name": "subterfugio",
+          "value": "0"
+        },
+        {
+          "name": "trato Anim.",
+          "value": "1"
+        },
+        {
+          "name": "tecnología",
+          "value": "0"
         }
       ],
       "image": "./img/linda-hominid.png"
@@ -225,11 +365,11 @@
         },
         {
           "name":"DES",
-          "value": "3"
+          "value": "2"
         },
         {
           "name":"RES",
-          "value": "3"
+          "value": "4"
         }
       ],
       "actualStats": [
@@ -239,23 +379,163 @@
         },
         {
           "name":"DES",
-          "value": "3"
+          "value": "2"
         },
         {
           "name":"RES",
-          "value": "3"
+          "value": "4"
+        },
+        {
+          "name":"CAR",
+          "value": "1"
+        },
+        {
+          "name":"MAN",
+          "value": "4"
+        },
+        {
+          "name":"APA",
+          "value": "1"
+        },
+        {
+          "name":"PER",
+          "value": "2"
+        },
+        {
+          "name":"INT",
+          "value": "4"
+        },
+        {
+          "name":"AST",
+          "value": "4"
         }
       ],
       "abilities": [
         {
-          "name": "Pelea",
+          "name": "alerta",
+          "value": "1"
+        },
+        {
+          "name": "arma fuego",
+          "value": "0"
+        },
+        {
+          "name": "academic.",
+          "value": "0"
+        },
+        {
+          "name": "atletismo",
           "value": "3"
+        },
+        {
+          "name": "artesanía",
+          "value": "0"
+        },
+        {
+          "name": "ciencias",
+          "value": "2"
+        },
+        {
+          "name": "callejeo",
+          "value": "0"
+        },
+        {
+          "name": "conducir",
+          "value": "0"
+        },
+        {
+          "name": "enigmas",
+          "value": "3"
+        },
+        {
+          "name": "empatía",
+          "value": "0"
+        },
+        {
+          "name": "etiqueta",
+          "value": "0"
+        },
+        {
+          "name": "informática",
+          "value": "0"
+        },
+        {
+          "name": "expresión",
+          "value": "0"
+        },
+        {
+          "name": "interpret.",
+          "value": "0"
+        },
+        {
+          "name": "investigación",
+          "value": "2"
+        },
+        {
+          "name": "imp Primario",
+          "value": "1"
+        },
+        {
+          "name": "latrocinio",
+          "value": "0"
+        },
+        {
+          "name": "leyes",
+          "value": "0"
+        },
+        {
+          "name": "intimidación",
+          "value": "1"
+        },
+        {
+          "name": "pelea armas",
+          "value": "1"
+        },
+        {
+          "name": "medicina",
+          "value": "0"
+        },
+        {
+          "name": "liderazgo",
+          "value": "0"
+        },
+        {
+          "name": "sigilo",
+          "value": "3"
+        },
+        {
+          "name": "ocultismo",
+          "value": "4"
+        },
+        {
+          "name": "pelea",
+          "value": "2"
+        },
+        {
+          "name": "superviv.",
+          "value": "3"
+        },
+        {
+          "name": "rituales",
+          "value": "3"
+        },
+        {
+          "name": "subterfugio",
+          "value": "3"
+        },
+        {
+          "name": "trato Anim.",
+          "value": "0"
+        },
+        {
+          "name": "tecnología",
+          "value": "0"
         }
       ],
       "image": "./img/susurrante-hominid.png"
     },
     {
-      "name": "Muerde a las Pulgas",
+      "name": "Gruñe a las Pulgas",
       "stats": [
         {
           "name":"FUE",
@@ -263,11 +543,11 @@
         },
         {
           "name":"DES",
-          "value": "4"
+          "value": "3"
         },
         {
           "name":"RES",
-          "value": "3"
+          "value": "4"
         }
       ],
       "actualStats": [
@@ -277,27 +557,143 @@
         },
         {
           "name":"DES",
-          "value": "4"
+          "value": "3"
         },
         {
           "name":"RES",
-          "value": "3"
+          "value": "4"
         }
       ],
       "abilities": [
         {
-          "name": "Pelea",
+          "name": "alerta",
+          "value": "0"
+        },
+        {
+          "name": "arma fuego",
+          "value": "0"
+        },
+        {
+          "name": "academic.",
+          "value": "0"
+        },
+        {
+          "name": "atletismo",
+          "value": "2"
+        },
+        {
+          "name": "artesanía",
+          "value": "0"
+        },
+        {
+          "name": "ciencias",
+          "value": "0"
+        },
+        {
+          "name": "callejeo",
+          "value": "0"
+        },
+        {
+          "name": "conducir",
+          "value": "0"
+        },
+        {
+          "name": "enigmas",
+          "value": "0"
+        },
+        {
+          "name": "empatía",
+          "value": "1"
+        },
+        {
+          "name": "etiqueta",
+          "value": "0"
+        },
+        {
+          "name": "informática",
+          "value": "0"
+        },
+        {
+          "name": "expresión",
+          "value": "0"
+        },
+        {
+          "name": "interpret.",
+          "value": "0"
+        },
+        {
+          "name": "investigación",
+          "value": "2"
+        },
+        {
+          "name": "imp Primario",
           "value": "3"
+        },
+        {
+          "name": "latrocinio",
+          "value": "0"
+        },
+        {
+          "name": "leyes",
+          "value": "0"
+        },
+        {
+          "name": "intimidación",
+          "value": "3"
+        },
+        {
+          "name": "pelea armas",
+          "value": "2"
+        },
+        {
+          "name": "medicina",
+          "value": "0"
+        },
+        {
+          "name": "liderazgo",
+          "value": "1"
+        },
+        {
+          "name": "sigilo",
+          "value": "3"
+        },
+        {
+          "name": "ocultismo",
+          "value": "1"
+        },
+        {
+          "name": "pelea",
+          "value": "4"
+        },
+        {
+          "name": "superviv.",
+          "value": "3"
+        },
+        {
+          "name": "rituales",
+          "value": "1"
+        },
+        {
+          "name": "subterfugio",
+          "value": "0"
+        },
+        {
+          "name": "trato Anim.",
+          "value": "3"
+        },
+        {
+          "name": "tecnología",
+          "value": "0"
         }
       ],
-      "image": "./img/muerde a las pulgas-hominid.png"
+      "image": "./img/gruñe a las pulgas-hominid.png"
     },
     {
       "name": "Janet",
       "stats": [
         {
           "name":"FUE",
-          "value": "3"
+          "value": "4"
         },
         {
           "name":"DES",
@@ -311,7 +707,7 @@
       "actualStats": [
         {
           "name":"FUE",
-          "value": "3"
+          "value": "4"
         },
         {
           "name":"DES",
@@ -368,7 +764,7 @@
           "value": "0"
         },
         {
-          "name": "ciencia",
+          "name": "ciencias",
           "value": "0"
         },
         {
@@ -409,7 +805,7 @@
         },
         {
           "name": "imp Primario",
-          "value": "0"
+          "value": "2"
         },
         {
           "name": "latrocinio",
