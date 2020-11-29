@@ -1,11 +1,12 @@
 import Vue from "vue";
+import { VUE_APP_HUB } from '@/environment'
 import { HubConnectionBuilder, LogLevel } from '@aspnet/signalr'
 
 export const getNotifications = new Vue({
   methods: {
     async start(playerName) {
       const connection = new HubConnectionBuilder()
-        .withUrl('https://localhost:5001/hub/game')
+        .withUrl(VUE_APP_HUB)
         .configureLogging(LogLevel.Information)
         .build()
 
@@ -23,7 +24,7 @@ export const getNotifications = new Vue({
 
     async rollDices(playerName) {
       const connection = new HubConnectionBuilder()
-        .withUrl('https://localhost:5001/hub/game')
+        .withUrl(VUE_APP_HUB)
         .configureLogging(LogLevel.Information)
         .build()
 
@@ -44,7 +45,7 @@ export const getNotifications = new Vue({
     async changeForm(playerStats) {
       console.log('changeForm')
       const connection = new HubConnectionBuilder()
-        .withUrl('https://localhost:5001/hub/game')
+        .withUrl(VUE_APP_HUB)
         .configureLogging(LogLevel.Information)
         .build()
 

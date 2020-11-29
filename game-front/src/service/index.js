@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { VUE_APP_HOST, VUE_APP_FOO } from '@/environment/index.js'
+import { VUE_APP_HOST } from '@/environment'
 import { APP_GETTERS, APP_MUTATIONS } from '@/store'
 
 const httpClient = axios.create()
@@ -12,14 +12,11 @@ const requestHeader = function () {
 }
 
 export const login = async ({ email, password }) => {
-  console.log('lallala')
-  console.log(process.env.VUE_APP_NOT_SECRET_CODE)
   console.log(VUE_APP_HOST)
-  console.log(VUE_APP_FOO)
   const response = await httpClient({
     method: 'post',
     url: '/users/login',
-    baseURL: 'http://localhost:5000/api',
+    baseURL: VUE_APP_HOST,
     headers: {
       'accept': 'application/json',
       'Content-Type': 'application/json'
@@ -46,7 +43,7 @@ export const sampleRequest = async () => {
   const response = await httpClient({
     method: 'get',
     url: '/players',
-    baseURL: 'http://localhost:5000/api',
+    baseURL: VUE_APP_HOST,
     headers: requestHeader()
   })
   return response.data

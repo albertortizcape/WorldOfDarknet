@@ -51,5 +51,11 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    baseUrlDev: 'http://localhost:5000/api',
+    baseUrlPro: 'http://ladePro/api',
+    hubGameDev: 'https://localhost:5001/hub/game',
+    hubGamePro: 'https://ladePro/hub/game'
   }
 }
