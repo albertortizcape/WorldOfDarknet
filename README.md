@@ -9,9 +9,12 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 ## BBDD
 - Amazon Relational Database Service (RDS) (Free 1 año)
 
+## Herramientas
+
 ### Herramientas de desarrollo
 - [Git](https://git-scm.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
 ### Herramientas de BBDD
 - Sql Server Express?
@@ -23,3 +26,27 @@ Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](h
 - [Azure DevOps](https://visualstudio.microsoft.com/es/team-services/)
 
 [![Build Status](https://dev.azure.com/albertortizcape/WorldOfDarknet/_apis/build/status/WorldOfDarknet-CI?branchName=develop)](https://dev.azure.com/albertortizcape/WorldOfDarknet/_build/latest?definitionId=4&branchName=develop)
+
+## Configuración entorno desarrollo
+
+### Preparación Git Remotes para el despliegue
+Es necesario añadir dos origenes remotos para los depliegues de front y back en Heroku
+
+``` 
+git remote add heroku-api https://git.heroku.com/world-of-dark-net-api.git 
+
+git remote add heroku-front https://git.heroku.com/world-of-darknet-front.git
+```
+
+Para comprobar los orígenes remotos
+``` 
+git remote -v
+```
+
+### Heroku command tips
+
+1. Cancel build
+   ```
+   heroku builds:cancel -a world-of-dark-net-front
+   heroku builds:cancel -a world-of-dark-net-api
+   ```
