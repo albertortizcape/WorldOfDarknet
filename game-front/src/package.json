@@ -10,7 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
-    "publish": "cd ../../ && git subtree push --prefix game-front/ heroku-front master || true"
+    "publish": "cd ../../ && git subtree push --prefix game-front/ heroku master || true"
   },
   "dependencies": {
     "axios": "^0.19.2",
