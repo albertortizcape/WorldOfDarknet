@@ -25,7 +25,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ```bash
 # un comando que Álex sabrá para qué es
-$ heroku stack:set container --remote heroku-api
+$ heroku stack:set container --remote heroku-api 
 
 # otro comando, parece que para los logs
 $ heroku logs --remote heroku-game --tail
