@@ -34,9 +34,26 @@ $ git remote add heroku-wod-back https://git.heroku.com/world-of-darknet-back.gi
 $ heroku stack:set container --remote heroku-api
 
 # una vez que en el package.json está establecido el comando para desplegar hacer un run publish
-# comando en package: "publish": "cd ../../ && git subtree push --prefix game-front/ heroku master || true"
+# comando en package: "publish": "cd ../../ && git subtree push --prefix game-front/ heroku-wod-view master || true"
 $ npm run publish
 
 # otro comando, parece que para los logs
 $ heroku logs --remote heroku-game --tail
+```
+
+## Publicación back en Heroku
+
+```bash
+# construir la imagen de docker
+docker build -t worldofdarknet .
+
+# este comando es para hacer la prueba de que funciona
+docker run -d -p 8080:80 --name abc worldofdarknet
+
+# enviar a Heroku
+heroku container:push web --remote heroku-wod-back
+
+# publicar!!!!
+heroku container:release web --remote heroku-wod-back
+
 ```
