@@ -7,13 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
-COPY ["game-api/src/Game.Api.Host/Game.Api.Host.csproj", "game-api/src/Game.Api.Host/"]
-COPY ["game-api/src/Game.Api/Game.Api.csproj", "game-api/src/Game.Api/"]
-COPY ["game-api/src/Game.Infrastructure/Game.Infrastructure.csproj", "game-api/src/Game.Infrastructure/"]
-COPY ["game-api/src/Game.Domain/Game.Domain.csproj", "game-api/src/Game.Domain/"]
-RUN dotnet restore "game-api/src/Game.Api.Host/Game.Api.Host.csproj"
+COPY ["Game.Api.Host/Game.Api.Host.csproj", "Game.Api.Host/"]
+COPY ["Game.Api/Game.Api.csproj", "Game.Api/"]
+COPY ["Game.Infrastructure/Game.Infrastructure.csproj", "Game.Infrastructure/"]
+COPY ["Game.Domain/Game.Domain.csproj", "Game.Domain/"]
+RUN dotnet restore "Game.Api.Host/Game.Api.Host.csproj"
 COPY . .
-WORKDIR "/src/game-api/src/Game.Api.Host"
+WORKDIR "/Game.Api.Host"
 RUN dotnet build "Game.Api.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
