@@ -13,7 +13,7 @@ COPY ["Game.Infrastructure/Game.Infrastructure.csproj", "Game.Infrastructure/"]
 COPY ["Game.Domain/Game.Domain.csproj", "Game.Domain/"]
 RUN dotnet restore "Game.Api.Host/Game.Api.Host.csproj"
 COPY . .
-WORKDIR "/Game.Api.Host"
+WORKDIR "/src/Game.Api.Host"
 RUN dotnet build "Game.Api.Host.csproj" -c Release -o /app/build
 
 FROM build AS publish
