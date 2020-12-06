@@ -53,9 +53,9 @@ export default {
     }
   },
   env: {
-    baseUrlDev: 'http://localhost:5000/api',
+    baseUrlDev: 'http://localhost:8081/api',
     baseUrlPro: 'http://localhost:5000/api',
-    hubGameDev: 'https://localhost:5001/hub/game',
+    hubGameDev: 'http://localhost:8081/hub/game',
     hubGamePro: 'https://localhost:5001/hub/game'
   }
 }
