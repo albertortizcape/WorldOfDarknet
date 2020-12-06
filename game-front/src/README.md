@@ -31,7 +31,7 @@ $ git remote add heroku-wod-view https://git.heroku.com/world-of-darknet-view.gi
 $ git remote add heroku-wod-back https://git.heroku.com/world-of-darknet-back.git
 
 # establecer el container, porque js no despliega por defecto en Heroku, y da un error de: No default language could be detected for this app
-$ heroku stack:set container --remote heroku-api
+$ heroku stack:set container --remote heroku-front
 
 # una vez que en el package.json está establecido el comando para desplegar hacer un run publish
 # comando en package: "publish": "cd ../../ && git subtree push --prefix game-front/ heroku-wod-view master || true"
@@ -56,4 +56,14 @@ heroku container:push web --remote heroku-wod-back
 # publicar!!!!
 heroku container:release web --remote heroku-wod-back
 
+```
+
+## The Bible and others
+
+```bash
+https://dev.to/alrobilliard/deploying-net-core-to-heroku-1lfe
+
+https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+https://devcenter.heroku.com/articles/heroku-cli-commands
 ```
