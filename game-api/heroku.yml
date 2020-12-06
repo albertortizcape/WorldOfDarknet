@@ -1,4 +1,4 @@
 build:
   docker:
-    web: src/Game.Api.Host/Dockerfile
+    web: src/Dockerfile.heroku
     

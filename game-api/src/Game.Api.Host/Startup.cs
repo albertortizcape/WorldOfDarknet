@@ -54,7 +54,6 @@ namespace Game.Api.Host
             }
 
             app.UseCors(MyAllowSpecificOrigins);
-
             app.UseApiConfiguration();
         }
     }
