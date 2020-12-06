@@ -25,7 +25,10 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ```bash
 # agregar el repo de front:
-$ heroku git:remote -a world-of-darknet-front
+$ git remote add heroku-wod-view https://git.heroku.com/world-of-darknet-view.git
+
+# agregar el repo de back:
+$ git remote add heroku-wod-back https://git.heroku.com/world-of-darknet-back.git
 
 # establecer el container, porque js no despliega por defecto en Heroku, y da un error de: No default language could be detected for this app
 $ heroku stack:set container --remote heroku-api

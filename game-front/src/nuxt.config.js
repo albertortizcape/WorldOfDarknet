@@ -53,9 +53,9 @@ export default {
     }
   },
   env: {
-    baseUrlDev: 'http://localhost:8081/api',
-    baseUrlPro: 'http://localhost:5000/api',
-    hubGameDev: 'http://localhost:8081/hub/game',
-    hubGamePro: 'https://localhost:5001/hub/game'
+    baseUrlDev: 'http://world-of-darknet-back.herokuapp.com/api',
+    baseUrlPro: 'http://world-of-darknet-back.herokuapp.com/api',
+    hubGameDev: 'http://world-of-darknet-back.herokuapp.com/hub/game',
+    hubGamePro: 'http://world-of-darknet-back.herokuapp.com/hub/game'
   }
 }
