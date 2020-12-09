@@ -1,0 +1,1 @@
+docker-compose --project-name=wof_postgres --file=docker-compose.yml up -d

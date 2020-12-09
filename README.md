@@ -19,6 +19,8 @@ Se podrá seguir el estado del proyecto desde el trello [World of Darknet](https
 ### Herramientas de BBDD
 - Sql Server Express?
 
+### 
+
 ## Arquitectura
 Trataremos de hacer la parte de backend siguiendo una [arquitectura hexagonal](https://codely.tv/blog/screencasts/arquitectura-hexagonal-ddd/)
 

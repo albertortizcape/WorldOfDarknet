@@ -31,13 +31,13 @@ namespace Game.Api.Infrastructure
                         Email = "root@root.com"
                     }, "root123");
 
-                context.Players.AddRange(
-                new Player { FirstName = "Alex" },
-                new Player { FirstName = "Alberto" },
-                new Player { FirstName = "Miguel" },
-                new Player { FirstName = "Luis" },
-                new Player { FirstName = "Hugo" }
-                );
+                //context.Players.AddRange(
+                //new Player { FirstName = "Alex" },
+                //new Player { FirstName = "Alberto" },
+                //new Player { FirstName = "Miguel" },
+                //new Player { FirstName = "Luis" },
+                //new Player { FirstName = "Hugo" }
+                //);
 
                 context.SaveChanges();
             }

@@ -41,23 +41,6 @@ $ npm run publish
 $ heroku logs --remote heroku-game --tail
 ```
 
-## Publicación back en Heroku
-
-```bash
-# construir la imagen de docker
-docker build -t worldofdarknet .
-
-# este comando es para hacer la prueba de que funciona
-docker run -d -p 8080:80 --name abc worldofdarknet
-
-# enviar a Heroku
-heroku container:push web --remote heroku-wod-back
-
-# publicar!!!!
-heroku container:release web --remote heroku-wod-back
-
-```
-
 ## The Bible and others
 
 ```bash

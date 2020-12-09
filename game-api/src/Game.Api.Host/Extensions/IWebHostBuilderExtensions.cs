@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +13,7 @@ namespace Game.Api.Host.Extensions
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<TContext>();
 
-                //TODO: can we do it more generic... ?? like context.Database.Migrate();
+                context.Database.Migrate();
                 Infrastructure.DataGenerator.Initialize(services);
             }
 

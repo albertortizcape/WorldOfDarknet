@@ -40,7 +40,9 @@ namespace Game.Api.Host
 
             services.AddControllers();
             services.AddApiConfiguration(Environment, Configuration)
-                .AddCustomDbContext(Configuration);
+                .AddPostgresDbContext(Configuration);
+
+
         }
 
 
