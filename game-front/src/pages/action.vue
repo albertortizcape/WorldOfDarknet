@@ -192,14 +192,8 @@ export default {
 
 <style>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   max-width: 90% !important;
+  min-height: 100vh;
 }
 
 .flex-container{
@@ -207,7 +201,6 @@ export default {
   margin: 0;
   list-style: none;
   display: flex;
-  flex-flow: row wrap;
   flex-wrap: wrap;
   justify-content: space-between;
 }
