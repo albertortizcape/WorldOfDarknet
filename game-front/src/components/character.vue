@@ -13,18 +13,18 @@
           <div class="btn btn-warning mb-1" @click="changeForm(stats.name,'hispo')">hispo</div>
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'lupus')">lupus</div>
 
-          <div class="stat-square mt-3" :class="stats.name">
-            <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-2">
-              <div class="btn btn-stat" :id="`btn-${att.name}`" @click="selectAttribute(att.value, att.name)">
+          <div class="stat-square mt-3" :class="stats.name.replaceAll(' ', '_')">
+            <div v-for="(att, index) in stats.actualStats" :key="index" class="d-flex justify-content-between align-items-center mb-1">
+              <div class="btn-stat" :id="`btn-${att.name}`" @click="selectAttribute(att.value, att.name)">
                 {{att.name}}
                 {{att.value}}
               </div>
             </div>
           </div>
 
-          <div class="ability-square mt-3" :class="`ability-${stats.name}`">
-            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-2">
-              <div class="btn btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
+          <div class="ability-square mt-3" :class="`ability-${stats.name.replaceAll(' ', '_')}`">
+            <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-1">
+              <div class="btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
                 {{abi.name}}
                 <b>{{abi.value}}</b>
               </div>
@@ -72,8 +72,9 @@ export default {
   },
   methods :{
     selectAttribute (diceTimes, attName) {
+      console.log(`select attr ${attName}`)
       this.totalDices = parseInt(this.totalDices) - parseInt(this.attributeDices)
-      document.querySelectorAll(`.${this.stats.name} .btn-stat`).forEach(item => { 
+      document.querySelectorAll(`.${this.stats.name.replaceAll(' ', '_')} .btn-stat`).forEach(item => { 
         if(item.id === `btn-${attName}`) {
           if(Array.from(item.classList).includes('btn-secondary')) {
             item.classList.remove('btn-secondary')
@@ -89,8 +90,9 @@ export default {
       })
     },
     selectAbility (diceTimes, attName) {
+      console.log(`select ability ${attName}`)
       this.totalDices = parseInt(this.totalDices) - parseInt(this.abilityDices)
-      document.querySelectorAll(`.ability-${this.stats.name} .btn-abi`).forEach(item => { 
+      document.querySelectorAll(`.ability-${this.stats.name.replaceAll(' ', '_')} .btn-abi`).forEach(item => { 
         if(item.id === `btn-${attName}`) {
           if(Array.from(item.classList).includes('btn-secondary')) {
             item.classList.remove('btn-secondary')
@@ -114,10 +116,10 @@ export default {
       this.totalDices = 0
       this.attributeDices = 0
       this.abilityDices = 0
-      document.querySelectorAll(`.${this.stats.name} .btn-stat`).forEach(item => {
+      document.querySelectorAll(`.${this.stats.name.replaceAll(' ', '_')} .btn-stat`).forEach(item => {
         item.classList.remove('btn-secondary')
       })
-      document.querySelectorAll(`.ability-${this.stats.name} .btn-abi`).forEach(item => {
+      document.querySelectorAll(`.ability-${this.stats.name.replaceAll(' ', '_')} .btn-abi`).forEach(item => {
         item.classList.remove('btn-secondary')
       })
     },
@@ -150,7 +152,7 @@ export default {
   flex-direction: column;
 }
 .btn {
-  line-height: 1;
+  line-height: 5px;
 }
 
 .btn-info, .btn-primary, .btn-danger,
@@ -163,18 +165,28 @@ export default {
 
 .btn-launch {
   border: 1px solid salmon;
+  display: flex;
+  align-items: center;
 }
 .btn-stat {
-  border: 1px solid rgb(112, 16, 16);
+  /* border: 1px solid rgb(112, 16, 16); */
   width: 5rem;
+  color: rgb(112, 16, 16);
+  cursor: pointer;
 }
 .btn-abi {
-  border: 1px solid rgb(122, 133, 196);
+  /* border: 1px solid rgb(122, 133, 196); */
   width: 6rem;
-  font-size: 10px;
+  font-size: 12px;
+  color: rgb(98, 102, 125);
+  cursor: pointer;
 }
 .btn-abi b {
   font-size: 12px;
+}
+.btn-secondary {
+  color: white;
+  border-radius: 5px;
 }
 .flex-item {
   padding:5px;    

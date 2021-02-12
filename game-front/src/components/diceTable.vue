@@ -5,9 +5,9 @@
       <p>Dificultad: {{dificulty}}</p>
       <p>Especialidad: {{speciality ? 'Sí' : 'No'}}</p>
       <div class="row m-0">
-        <b class="ml-3">Éxitos: {{exitos}}</b>
-        <b class="ml-3">Unos: {{unos}}</b>
-        <b class="ml-3">Dieces: {{dieces}}</b>
+        <b class="ml-3">ok: {{exitos}}</b>
+        <b class="ml-3">1s: {{unos}}</b>
+        <b class="ml-3">10s: {{dieces}}</b>
         <b class="ml-3">Total: {{total}}</b>
       </div>
     </div>

@@ -2,6 +2,9 @@
   <div class="container">
     <ul class="flex-container col-12 mt-5">
       <character v-for="(stats, index) in statsArray.pjs" v-on:launchDices="launchDices" v-on:transformacion="transformacion" :key="index" :stats="stats"/>
+      <!-- <div v-for="(stats, index) in statsArray.pjs" :key="index" class="col-2 d-flex flex-wrap justify-content-center mt-5">
+        <dice-table class="" :name="name" :diceValues="diceValues" :dificulty="dificulty" :speciality="spec" />
+      </div> -->
     </ul>
 
     <div class="col-12 d-flex flex-wrap justify-content-center mt-5">
