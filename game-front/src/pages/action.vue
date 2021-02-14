@@ -197,6 +197,9 @@ export default {
 .container {
   max-width: 90% !important;
   min-height: 100vh;
+
+  background: #333;
+  color: #ddd;
 }
 
 .flex-container{

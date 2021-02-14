@@ -5,7 +5,7 @@
           <img :src="stats.image" />
         </div>
         <div class="recuadro-info">
-          <p class="title">{{stats.name}}</p>
+          <p class="title" @click="changePage()">{{stats.name}}</p>
 
           <div class="btn btn-info mb-1" @click="changeForm(stats.name,'hominid')">hominid</div>
           <div class="btn btn-primary mb-1" @click="changeForm(stats.name,'glabro')">glabro</div>
@@ -22,13 +22,17 @@
             </div>
           </div>
 
-          <div class="ability-square mt-3" :class="`ability-${stats.name.replaceAll(' ', '_')}`">
+          <div class="ability-square mt-3" v-if="page===0" :class="`ability-${stats.name.replaceAll(' ', '_')}`">
             <div v-for="(abi, index) in stats.abilities" :key="index" class="d-flex justify-content-between align-items-center mb-1">
               <div class="btn-abi" :id="`btn-${abi.name}`" @click="selectAbility(abi.value, abi.name)">
                 {{abi.name}}
                 <b>{{abi.value}}</b>
               </div>
             </div>
+          </div>
+
+          <div class="ability-square photo mt-3" v-if="page===1">
+            <img :src="stats.image" />
           </div>
 
           <div class="dados col-12 p-1 mt-3 mb-3">
@@ -63,7 +67,9 @@ export default {
       abilityDices: 0,
       speciality: false,
       totalDices: 0,
-      dificulty: 6
+      dificulty: 6,
+      page:0,
+      maxPage:1
     }
   },
   components: {
@@ -129,6 +135,12 @@ export default {
         value: newForm
       }
       this.$emit('transformacion', newFormToSend)
+    },
+    changePage() {
+      this.page++;
+      if(this.page > this.maxPage) {
+        this.page = 0;
+      }
     }
   },
   watch: {
@@ -146,6 +158,14 @@ export default {
 .ability-square {
   box-shadow: 1px 2px 4px 5px rgba(120, 90, 120, 0.4);
 }
+.photo {
+  height: 220px;
+}
+.photo img {
+  height: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .char-card {
   height: 12rem;
   display: flex;
@@ -158,20 +178,21 @@ export default {
 .btn-info, .btn-primary, .btn-danger,
 .btn-warning, .btn-info {
   background: transparent;
-  color: black;
+  color: #ddd;
 }
 
 
 
 .btn-launch {
   border: 1px solid salmon;
+  color: salmon;
   display: flex;
   align-items: center;
 }
 .btn-stat {
   /* border: 1px solid rgb(112, 16, 16); */
   width: 5rem;
-  color: rgb(112, 16, 16);
+  color: rgb(191, 131, 131);
   cursor: pointer;
 }
 .btn-abi {
@@ -192,8 +213,10 @@ export default {
   padding:5px;    
 }
 .title{
-  color: black;
+  color: #eee;
   font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
 }
 .recuadro {
   border-radius: 3px;
@@ -229,12 +252,14 @@ export default {
   justify-content: space-between;
 }
 .total-dices {
-  border-color: blue;
+  color: blue;
   width: 3rem;
+  font-weight: bold;
 }
 .dificulty {
-  border-color: red;
+  color: red;
   width: 2rem;
+  font-weight: bold;
 }
 
 </style>
