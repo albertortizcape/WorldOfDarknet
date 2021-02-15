@@ -163,6 +163,7 @@ export default {
 }
 .photo img {
   height: 220px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -184,15 +185,15 @@ export default {
 
 
 .btn-launch {
-  border: 1px solid salmon;
-  color: salmon;
+  border: 1px solid #867830;
+  color: #867830;
   display: flex;
   align-items: center;
 }
 .btn-stat {
   /* border: 1px solid rgb(112, 16, 16); */
   width: 5rem;
-  color: rgb(191, 131, 131);
+  color: #867830;
   cursor: pointer;
 }
 .btn-abi {
