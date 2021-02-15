@@ -25,6 +25,7 @@
 import Vue from 'vue'
 import Character from '~/components/character.vue'
 import diceTable from '~/components/diceTable.vue'
+import '~/assets/css/style.css'
 import characterService from "~/service/characterService"
 import {getNotifications} from "~/service/gameHubService"
 import { APP_GETTERS, APP_MUTATIONS } from '@/store'
