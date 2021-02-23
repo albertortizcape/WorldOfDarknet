@@ -156,7 +156,7 @@ export default {
   
 }
 .ability-square {
-  box-shadow: 1px 2px 4px 5px rgba(120, 90, 120, 0.4);
+  box-shadow: 1px 2px 3px 2px rgba(227, 228, 229, 0.4);
 }
 .photo {
   height: 220px;
@@ -185,22 +185,22 @@ export default {
 
 
 .btn-launch {
-  border: 1px solid #867830;
-  color: #867830;
+  border: 1px solid #e3e4e5;
+  color: #e3e4e5;
   display: flex;
   align-items: center;
 }
 .btn-stat {
   /* border: 1px solid rgb(112, 16, 16); */
   width: 5rem;
-  color: #867830;
+  color: #AB9144;
   cursor: pointer;
 }
 .btn-abi {
   /* border: 1px solid rgb(122, 133, 196); */
   width: 6rem;
   font-size: 12px;
-  color: rgb(98, 102, 125);
+  color: #e3e4e5;
   cursor: pointer;
 }
 .btn-abi b {
@@ -221,7 +221,7 @@ export default {
 }
 .recuadro {
   border-radius: 3px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(227, 228, 229, 0.16), 0 2px 10px 0 rgba(227, 228, 229, 0.12);
   display: block;
   margin-top: 80px;
   min-height: 300px;
@@ -239,7 +239,7 @@ export default {
   margin-top: -80px;
   padding-top: 5px;
   width: 125px;
-  box-shadow: 0px -15px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px -15px 10px rgba(227, 228, 229, 0.16);
   z-index: 1;
   position: relative;
 }
