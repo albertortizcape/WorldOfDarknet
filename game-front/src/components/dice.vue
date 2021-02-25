@@ -35,6 +35,7 @@ export default {
   padding: 1rem;
   max-width: 3rem;
   margin: 1rem;
+  text-align: center;
 }
 
 </style>
