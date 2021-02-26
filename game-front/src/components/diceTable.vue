@@ -114,6 +114,7 @@ export default {
   padding: 0.5rem 0rem;
   width: 2.5rem;
   margin: 0 1rem;
+  text-align: center;
 }
 .fail {
   border: 1px solid rgb(180, 57, 57);
